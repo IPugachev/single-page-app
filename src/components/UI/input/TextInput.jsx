@@ -9,7 +9,7 @@ const StyledInput = styled.input`
   border-radius: 4px;
   padding: 13px 15px;
   font-size: 14px;
-  line-height: 24px;
+  line-height: 18px;
   &:focus {
     outline: none;
     color: rgba(31, 32, 65, 0.75);
