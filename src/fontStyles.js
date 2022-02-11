@@ -1,10 +1,11 @@
 import { createGlobalStyle } from 'styled-components'
-import Montserrat from './fonts/montserrat-regular.woff'
+import Montserrat from './fonts/Montserrat-VariableFont_wght.ttf'
 const FontStyles = createGlobalStyle`
 
 @font-face {
   font-family: 'Montserrat';
-  src: url(${Montserrat}) format('woff');
+  src: 
+  url(${Montserrat}) format('truetype');
 }
 `
 

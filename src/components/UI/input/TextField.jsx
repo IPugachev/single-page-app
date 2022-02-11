@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const StyledInput = styled.input`
+const StyledField = styled.input`
   width: 320px;
   height: 44px;
   color: rgba(31, 32, 65, 0.25);
@@ -16,8 +16,8 @@ const StyledInput = styled.input`
     border: 1px solid rgba(31, 32, 65, 0.5);
   }
 `
-const TextInput = () => {
-  return <StyledInput placeholder='Email' />
+const TextField = (props) => {
+  return <StyledField {...props} />
 }
 
-export default TextInput
+export default TextField
