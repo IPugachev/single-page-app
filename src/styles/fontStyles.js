@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import Montserrat from './fonts/Montserrat-VariableFont_wght.ttf'
+import Montserrat from '../assets/fonts/Montserrat-VariableFont_wght.ttf'
 const FontStyles = createGlobalStyle`
 
 @font-face {

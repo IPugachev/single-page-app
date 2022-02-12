@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
-import { ReactComponent as Arrow } from '../../arrow-down.svg'
+import { ReactComponent as Arrow } from '../../../assets/arrow-down.svg'
 
 const appear = keyframes`
   from {

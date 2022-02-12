@@ -1,17 +1,7 @@
-import { useState } from 'react'
-import styled from 'styled-components'
-import Flex from './components/Flex'
-import Dropdown from './components/UI/dropdown/Dropdown'
-import TextField from './components/UI/input/TextField'
+import SearchRoom from './pages/SearchRoom'
 
-const App = () => {
-  return (
-    <div className='App'>
-      <Flex justify='center' margin='20px 0'>
-        <Dropdown />
-      </Flex>
-    </div>
-  )
+function App() {
+  return <SearchRoom />
 }
 
 export default App

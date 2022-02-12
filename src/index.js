@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import FontStyles from './fontStyles'
-import styled, { createGlobalStyle } from 'styled-components'
+import FontStyles from './styles/fontStyles'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 const Global = createGlobalStyle`
 *{
@@ -12,12 +12,18 @@ const Global = createGlobalStyle`
   font-family: 'Montserrat', sans-serif;
 }
 `
+const theme = {
+  colors: {
+    primary: '#1F2041',
+    secondary: '#BC9CFF',
+  },
+}
 
 ReactDOM.render(
-  <React.StrictMode>
+  <ThemeProvider theme={theme}>
     <Global />
     <FontStyles />
     <App />
-  </React.StrictMode>,
+  </ThemeProvider>,
   document.getElementById('root')
 )
