@@ -1,70 +1,9 @@
-import React, { useEffect, useLayoutEffect, useMemo, useState } from 'react'
-import styled, { keyframes } from 'styled-components'
+import React, { useState } from 'react'
 import { ReactComponent as Arrow } from '../../../assets/icons/arrow-down.svg'
 import { ReactComponent as IncBtn } from '../../../assets/icons/inc-btn.svg'
-import { ReactComponent as DecBtn } from '../../../assets/icons/dec-btn.svg'
 import Flex from '../../../styles/Flex'
+import * as S from './style.jsx'
 
-const StyledDropdown = styled.ul`
-  width: 320px;
-  height: 44px;
-`
-const DropdownOption = styled.li`
-  width: 320px;
-  height: 44px;
-  padding: 0 7px 0 15px;
-  font-size: 12px;
-  line-height: 15px;
-  color: ${(props) => props.theme.colors.primary};
-  font-weight: 700;
-  font-style: normal;
-  background-color: white;
-  ${'' /* display: ${({ display }) => display || 'none'}; */}
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid rgba(31, 32, 65, 0.25);
-  border-top-style: none;
-  border-bottom-style: none;
-  ${'' /* animation: ${appear} 0.25s linear; */}
-  box-shadow: 0px 10px 20px 0px #1f20410d;
-
-  &:not(:first-child) {
-    opacity: ${(props) => (props.visible ? 1 : 0)};
-    transition: opacity 0.2s linear;
-    pointer-events: ${(props) => (props.visible ? 'auto' : 'none')};
-  }
-
-  &:first-child {
-    display: flex;
-    border: 1px solid rgba(31, 32, 65, 0.25);
-    border-radius: 2px 2px 0 0;
-    animation: none;
-    padding: 0 0 0 15px;
-    font-size: 14px;
-    line-height: 18px;
-    color: rgba(31, 32, 65, 0.75);
-    font-weight: 400;
-    box-shadow: none;
-  }
-  &:last-child {
-    border: 1px solid rgba(31, 32, 65, 0.25);
-    border-top-style: none;
-    border-radius: 0 0 2px 2px;
-  }
-`
-
-const StyledDecBtn = styled(DecBtn)`
-  opacity: ${({ opacity }) => opacity || '0.2'};
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-`
-const SubmitClearBtn = styled.span`
-  color: ${(props) => props.theme.colors.secondary};
-  cursor: pointer;
-`
-//входные данные = массив [{name:string,counter:0}]
 const Dropdown = ({ dropdownValues, setVal }) => {
   const [visibale, setVisible] = useState(false)
   const [dropdownCount, setDropdownCount] = useState([0, 0, 0])
@@ -85,7 +24,6 @@ const Dropdown = ({ dropdownValues, setVal }) => {
   const handleClear = () => {
     setDropdownCount([0, 0, 0])
     setDropdownValue('Сколько гостей')
-    toggleVisible()
     upDropdawn([0, 0, 0])
   }
 
@@ -101,8 +39,10 @@ const Dropdown = ({ dropdownValues, setVal }) => {
 
     if (arr[2] === 0 && (arr[0] !== 0 || arr[1] !== 0)) {
       setDropdownValue(`${arr[0] + arr[1]} ${t}`)
-    } else if (arr[2] !== 0 && (arr[0] !== 0 || arr[1] !== 0)) {
-      setDropdownValue(`${arr[0] + arr[1]} ${t}, ${arr[2]} ${m}`)
+    } else if (arr[2] !== 0) {
+      setDropdownValue(`${arr[0] + arr[1] !== 0 ? arr[0] + arr[1] + ' ' + t + ',' : ''} ${arr[2]} ${m}`)
+    } else {
+      setDropdownValue('Сколько гостей')
     }
     toggleVisible()
   }
@@ -118,28 +58,30 @@ const Dropdown = ({ dropdownValues, setVal }) => {
   }
 
   return (
-    <StyledDropdown>
-      <DropdownOption onClick={toggleVisible}>
+    <S.StyledDropdown>
+      <S.DtopdownHeadOption>
         {dropdownValue}
-        <Arrow style={{ cursor: 'pointer' }} />
-      </DropdownOption>
-
-      {dropdownValues.map((o, index) => (
-        <DropdownOption key={index} value={o.title} visible={visibale}>
-          <Flex>{o.title.toUpperCase()}</Flex>
-          <Flex justify='space-between' align='center' style={{ width: '92px', userSelect: 'none' }}>
-            <StyledDecBtn opacity={dropdownCount[index] > 0 ? '1' : '0.2'} onClick={() => decCount(index)} />
-            {dropdownCount[index]}
-            <IncBtn onClick={() => incCount(index)} style={{ cursor: 'pointer' }} />
-          </Flex>
-        </DropdownOption>
-      ))}
-
-      <DropdownOption visible={visibale}>
-        <SubmitClearBtn onClick={handleClear}>ОЧИСТИТЬ</SubmitClearBtn>
-        <SubmitClearBtn onClick={handleSubmit}>ПРИМЕНИТЬ</SubmitClearBtn>
-      </DropdownOption>
-    </StyledDropdown>
+        <Arrow style={{ cursor: 'pointer' }} onClick={toggleVisible} />
+      </S.DtopdownHeadOption>
+      <S.OptionsBox visible={visibale}>
+        {dropdownValues.map((o, index) => (
+          <S.DropdownOption key={index} value={o.title}>
+            <Flex>{o.title.toUpperCase()}</Flex>
+            <Flex justify='space-between' align='center' style={{ width: '92px', userSelect: 'none' }}>
+              <S.StyledDecBtn opacity={dropdownCount[index] > 0 ? '1' : '0.2'} onClick={() => decCount(index)} />
+              {dropdownCount[index]}
+              <IncBtn onClick={() => incCount(index)} style={{ cursor: 'pointer' }} />
+            </Flex>
+          </S.DropdownOption>
+        ))}
+        <S.DropdownOption>
+          <S.SubmitClearBtn visible={dropdownCount.every((e) => e === 0)} onClick={handleClear}>
+            ОЧИСТИТЬ
+          </S.SubmitClearBtn>
+          <S.SubmitBtn onClick={handleSubmit}>ПРИМЕНИТЬ</S.SubmitBtn>
+        </S.DropdownOption>
+      </S.OptionsBox>
+    </S.StyledDropdown>
   )
 }
 

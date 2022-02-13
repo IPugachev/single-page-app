@@ -9,7 +9,7 @@ const SearchRoom = () => {
     { title: 'младенцы', count: 0 },
   ])
 
-  console.log(...options)
+  console.log(options.map((p) => p.count))
   return (
     <div className='App'>
       <Flex justify='center' margin='20px 0'>
