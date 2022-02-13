@@ -4,6 +4,7 @@ import { ReactComponent as DecBtn } from '../../../assets/icons/dec-btn.svg'
 export const StyledDropdown = styled.div`
   width: 320px;
   height: 44px;
+  box-sizing: border-box;
 `
 export const DtopdownHeadOption = styled.div`
   display: flex;
@@ -16,7 +17,6 @@ export const DtopdownHeadOption = styled.div`
   font-weight: 400;
   justify-content: space-between;
   align-items: center;
-  width: 320px;
   height: 44px;
 `
 
@@ -33,8 +33,7 @@ export const OptionsBox = styled.div`
 `
 
 export const DropdownOption = styled.div`
-  width: 320px;
-  height: 44px;
+  height: 40px;
   padding: 0 7px 0 15px;
   font-size: 12px;
   line-height: 15px;
@@ -43,6 +42,8 @@ export const DropdownOption = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: white;
+  z-index: 1;
 `
 
 export const StyledDecBtn = styled(DecBtn)`
