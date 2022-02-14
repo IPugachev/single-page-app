@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 import { ReactComponent as DecBtn } from '../../../assets/icons/dec-btn.svg'
 
-export const StyledDropdown = styled.div`
-  width: 320px;
+export const Dropdown = styled.div`
+  width: ${(props) => (props.type === 'guests' ? '320px' : '266px')};
   height: 44px;
+  white-space: nowrap;
   box-sizing: border-box;
 `
 export const DtopdownHeadOption = styled.div`
@@ -46,7 +47,7 @@ export const DropdownOption = styled.div`
   z-index: 1;
 `
 
-export const StyledDecBtn = styled(DecBtn)`
+export const DecrBtn = styled(DecBtn)`
   opacity: ${({ opacity }) => opacity || '0.2'};
   width: 30px;
   height: 30px;

@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import Flex from '../styles/Flex'
-import DropdownGuests from '../components/UI/dropdown/DropdownGuests'
-import DropdownRooms from '../components/UI/dropdown/DropdownRooms'
+import Dropdown from '../components/UI/dropdown/Dropdown'
+import Calendar from '../components/UI/calendar'
 
 const SearchRoom = () => {
   const [optionsGuests, setOptionsGuests] = useState([
@@ -14,6 +14,7 @@ const SearchRoom = () => {
     { title: 'кровати', count: 2 },
     { title: 'ванные комнаты', count: 0 },
   ])
+
   const onChangeRooms = useCallback((value) => {
     setOptionsRooms(value)
   }, [])
@@ -25,10 +26,10 @@ const SearchRoom = () => {
     <div className='App'>
       <React.StrictMode>
         <Flex margin='20px' justify='space-around'>
-          {/* <DropdownGuests dropdownValues={optionsGuests} onChange={onChangeGuests} /> */}
-          <DropdownRooms dropdownValues={optionsGuests} onChange={onChangeGuests} />
-          <DropdownRooms dropdownValues={optionsRooms} onChange={onChangeRooms} />
+          <Dropdown dropdownValues={optionsGuests} onChange={onChangeGuests} type='guests' />
+          <Dropdown dropdownValues={optionsRooms} onChange={onChangeRooms} type='rooms' />
         </Flex>
+        <Calendar />
       </React.StrictMode>
     </div>
   )

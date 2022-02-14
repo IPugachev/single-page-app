@@ -63,7 +63,7 @@ function useOutsideClicker(ref, close) {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [ref])
+  }, [close, ref])
 }
 
 const Dropdownc = () => {
