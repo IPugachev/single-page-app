@@ -28,8 +28,8 @@ const SearchRoom = () => {
         <Flex margin='20px' justify='space-around'>
           <Dropdown dropdownValues={optionsGuests} onChange={onChangeGuests} type='guests' />
           <Dropdown dropdownValues={optionsRooms} onChange={onChangeRooms} type='rooms' />
+          <Calendar />
         </Flex>
-        <Calendar />
       </React.StrictMode>
     </div>
   )

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { ReactComponent as Arrow } from '../../../assets/icons/arrow-down.svg'
 
 const StyledField = styled.input`
   width: 320px;
@@ -16,8 +17,23 @@ const StyledField = styled.input`
     border: 1px solid rgba(31, 32, 65, 0.5);
   }
 `
-const TextField = (props) => {
-  return <StyledField {...props} />
-}
+const StyledArrow = styled(Arrow)`
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+`
+const TextField = React.forwardRef((props, ref) => {
+  const handleFocus = () => {
+    props.onFocus()
+  }
+  const handleBlur = () => {}
+
+  return (
+    <div style={{ position: 'relative' }}>
+      <StyledField {...props} ref={ref} onFocus={handleFocus} onBlur={handleBlur} />
+      <StyledArrow onClick={props.onClick} />
+    </div>
+  )
+})
 
 export default TextField
