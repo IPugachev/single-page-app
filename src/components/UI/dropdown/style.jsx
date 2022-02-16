@@ -1,11 +1,23 @@
 import styled from 'styled-components'
 import { ReactComponent as DecBtn } from '../../../assets/icons/dec-btn.svg'
+import { ReactComponent as IncBtn } from '../../../assets/icons/inc-btn.svg'
+import { ReactComponent as Ar } from '../../../assets/icons/arrow-down.svg'
 
 export const Dropdown = styled.div`
   width: ${(props) => (props.type === 'guests' ? '320px' : '266px')};
-  height: 44px;
+  height: 64px;
   white-space: nowrap;
   box-sizing: border-box;
+  position: relative;
+`
+export const Title = styled.div`
+  font-size: 12px;
+  line-height: 15px;
+  color: #1f2041;
+  font-weight: 700;
+  font-style: normal;
+  text-transform: uppercase;
+  margin-bottom: 5px;
 `
 export const DtopdownHeadOption = styled.div`
   display: flex;
@@ -22,7 +34,9 @@ export const DtopdownHeadOption = styled.div`
 `
 
 export const OptionsBox = styled.div`
-  display: flex;
+  display: block;
+  width: 100%;
+  position: absolute;
   flex-direction: column;
   box-shadow: 0px 10px 20px 0px #1f20410d;
   opacity: ${(props) => (props.visible ? 1 : 0)};
@@ -31,6 +45,7 @@ export const OptionsBox = styled.div`
   border: 1px solid rgba(31, 32, 65, 0.25);
   border-top-style: none;
   border-radius: 0 0 2px 2px;
+  z-index: 10;
 `
 
 export const DropdownOption = styled.div`
@@ -52,15 +67,23 @@ export const DecrBtn = styled(DecBtn)`
   height: 30px;
   cursor: pointer;
 `
+export const IncrBtn = styled(IncBtn)`
+  cursor: pointer;
+`
+export const Arrow = styled(Ar)`
+  cursor: pointer;
+`
 export const SubmitClearBtn = styled.span`
   color: ${(props) => props.theme.colors.secondary};
   pointer-events: ${(props) => (props.visible ? 'none' : 'auto')};
   opacity: ${(props) => (props.visible ? 0 : 1)};
   cursor: pointer;
   user-select: none;
+  text-transform: uppercase;
 `
 export const SubmitBtn = styled.span`
   color: ${(props) => props.theme.colors.secondary};
   cursor: pointer;
   user-select: none;
+  text-transform: uppercase;
 `

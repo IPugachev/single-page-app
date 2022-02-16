@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
-import { ReactComponent as Arrow } from '../../../assets/icons/arrow-down.svg'
-import { ReactComponent as IncBtn } from '../../../assets/icons/inc-btn.svg'
+import React, { useRef, useState } from 'react'
 import Flex from '../../../styles/Flex'
 import * as S from './style.jsx'
 import { getTitleDropdownByCount } from '../../../utils/Dropdown.js'
+import { useClickOutside } from '../../hooks/useClickOutside'
 
-const Dropdown = ({ dropdownValues, onChange, type }) => {
+const Dropdown = ({ dropdownValues, onChange, type, title }) => {
   const [visibale, setVisible] = useState(false)
   const [dropdownValue, setDropdownValue] = useState(type === 'guests' ? 'Сколько гостей' : '2 спальни, 2 кровати')
+
+  const clickRef = useRef()
+
+  useClickOutside(clickRef, () => setVisible(false))
 
   const toggleVisible = () => {
     setVisible((prev) => !prev)
@@ -38,10 +41,11 @@ const Dropdown = ({ dropdownValues, onChange, type }) => {
   const handleValue = dropdownValues.map((val) => val.count).every((e) => e === 0)
 
   return (
-    <S.Dropdown type={type}>
+    <S.Dropdown type={type} ref={clickRef}>
+      <S.Title>{title}</S.Title>
       <S.DtopdownHeadOption>
         {dropdownValue}
-        <Arrow style={{ cursor: 'pointer' }} onClick={toggleVisible} />
+        <S.Arrow onClick={toggleVisible} />
       </S.DtopdownHeadOption>
       <S.OptionsBox visible={visibale}>
         {dropdownValues.map((o, index) => (
@@ -50,16 +54,16 @@ const Dropdown = ({ dropdownValues, onChange, type }) => {
             <Flex justify='space-between' align='center' style={{ width: '92px', userSelect: 'none' }}>
               <S.DecrBtn opacity={o.count > 0 ? '1' : '0.2'} onClick={() => decCount(index)} />
               {o.count}
-              <IncBtn onClick={() => incCount(index)} style={{ cursor: 'pointer' }} />
+              <S.IncrBtn onClick={() => incCount(index)} />
             </Flex>
           </S.DropdownOption>
         ))}
         {type === 'guests' && (
           <S.DropdownOption>
             <S.SubmitClearBtn visible={handleValue} onClick={handleClear}>
-              ОЧИСТИТЬ
+              очистить
             </S.SubmitClearBtn>
-            <S.SubmitBtn onClick={handleSubmit}>ПРИМЕНИТЬ</S.SubmitBtn>
+            <S.SubmitBtn onClick={handleSubmit}>применить</S.SubmitBtn>
           </S.DropdownOption>
         )}
       </S.OptionsBox>

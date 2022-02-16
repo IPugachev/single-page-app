@@ -11,12 +11,11 @@ import {
   addMonths,
   subMonths,
 } from 'date-fns'
-import { ReactComponent as ArrowBack } from '../../../assets/icons/arrow-back.svg'
-import { ReactComponent as ArrowForward } from '../../../assets/icons/arrow-forward.svg'
-import './styles.css'
-import TextField from '../input/TextField'
+import Input from '../input/index.'
 import Flex from '../../../styles/Flex'
 import { ru } from 'date-fns/locale'
+import * as S from './style.jsx'
+import { useClickOutside } from '../../hooks/useClickOutside'
 
 const months = [
   'Январь',
@@ -35,30 +34,31 @@ const months = [
 
 const Calendar = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date())
-
-  const [selectedStartDate, setSelectedStartDate] = useState('')
-  const [selectedEndDate, setSelectedEndDate] = useState('')
+  const [selectedStartDate, setSelectedStartDate] = useState(null)
+  const [selectedEndDate, setSelectedEndDate] = useState(null)
   const [visible, setVisible] = useState(false)
   const fromRef = useRef()
   const untilRef = useRef()
+  const clickRef = useRef()
+
+  const dayComp = (day) => {
+    return day > new Date() || isSameDay(day, new Date())
+  }
+
+  useClickOutside(clickRef, () => setVisible(false))
+
   const renderHeader = () => {
     const dateFormat = 'yyyy'
     return (
-      <div className='header row flex-middle'>
-        <div className='col col-start' onClick={prevMonth}>
-          <div className='icon'>
-            <ArrowBack />
-          </div>
-        </div>
-        <div className='col col-center'>
-          <span>{months[format(currentMonth, 'L') - 1] + ' ' + format(currentMonth, dateFormat, { locale: ru })}</span>
-        </div>
-        <div className='col col-end' onClick={nextMonth}>
-          <div className='icon'>
-            <ArrowForward />
-          </div>
-        </div>
-      </div>
+      <S.Row>
+        <S.Col position='flex-start' onClick={prevMonth}>
+          <S.ArrowB />
+        </S.Col>
+        <S.Col>{months[format(currentMonth, 'L') - 1] + ' ' + format(currentMonth, dateFormat, { locale: ru })}</S.Col>
+        <S.Col position='flex-end' onClick={nextMonth}>
+          <S.ArrowF />
+        </S.Col>
+      </S.Row>
     )
   }
 
@@ -66,16 +66,16 @@ const Calendar = () => {
     const dateFormat = 'EEEEEE'
     const days = []
     let startDate = startOfWeek(currentMonth, { weekStartsOn: 1 })
+
     for (let i = 0; i < 7; i++) {
       days.push(
-        <div className='col col-center' key={i}>
-          {/* {format(addDays(startDate, i), dateFormat, { locale: ru })} */}
+        <div key={i}>
           {format(addDays(startDate, i), dateFormat, { locale: ru }).charAt(0).toUpperCase() +
             format(addDays(startDate, i), dateFormat, { locale: ru }).charAt(1)}
         </div>
       )
     }
-    return <div className='days row'>{days}</div>
+    return <S.Days>{days}</S.Days>
   }
 
   const renderCells = () => {
@@ -83,11 +83,9 @@ const Calendar = () => {
     const monthEnd = endOfMonth(monthStart)
     const startDate = startOfWeek(monthStart, { weekStartsOn: 1 })
     const endDate = endOfWeek(monthEnd, { weekStartsOn: 1 })
-
     const dateFormat = 'd'
     const rows = []
     let days = []
-
     let day = startDate
     let formattedDate = ''
     while (day <= endDate) {
@@ -95,45 +93,53 @@ const Calendar = () => {
         formattedDate = format(day, dateFormat)
         const cloneDay = day
         days.push(
-          <div
-            className={`col cell ${
-              !isSameMonth(day, monthStart)
-                ? 'disabled'
-                : isSameDay(day, selectedStartDate) || isSameDay(day, selectedEndDate)
-                ? 'selected'
-                : isSameDay(day, new Date())
-                ? 'default'
-                : ''
+          <S.CellBg
+            className={`${
+              dayComp(day)
+                ? selectedEndDate !== null && isSameDay(day, selectedStartDate) && selectedStartDate < selectedEndDate
+                  ? 'selected-start'
+                  : isSameDay(day, selectedEndDate) && selectedStartDate < selectedEndDate
+                  ? 'selected-end'
+                  : day > selectedStartDate && day < selectedEndDate
+                  ? 'selected'
+                  : ''
+                : 'unable'
             }`}
-            key={day}
-            onClick={() => onDateClick(cloneDay)}>
-            <span className='number'>{formattedDate}</span>
-          </div>
+            key={day}>
+            <S.Cell
+              className={`${
+                dayComp(day) &&
+                (isSameDay(day, selectedStartDate) || isSameDay(day, selectedEndDate)
+                  ? 'selected'
+                  : isSameDay(day, new Date())
+                  ? 'default'
+                  : !isSameMonth(day, monthStart)
+                  ? 'disabled'
+                  : '')
+              }`}
+              onClick={() => onDateClick(cloneDay)}>
+              <S.Number>{formattedDate}</S.Number>
+            </S.Cell>
+          </S.CellBg>
         )
         day = addDays(day, 1)
       }
-      rows.push(
-        <div className='row' key={day}>
-          {days}
-        </div>
-      )
+      rows.push(<S.RowCells key={day}>{days}</S.RowCells>)
       days = []
     }
-    return <div className='body'>{rows}</div>
+    return <>{rows}</>
   }
 
   const onDateClick = (day) => {
-    if (day > selectedStartDate && selectedStartDate === '') {
+    if (selectedStartDate === null) {
       setSelectedStartDate(day)
       fromRef.current.value = format(day, 'd.MM.yyyy')
     } else if (day < selectedStartDate) {
       setSelectedStartDate(day)
       fromRef.current.value = format(day, 'd.MM.yyyy')
-      untilRef.current.focus()
     } else {
       setSelectedEndDate(day)
       untilRef.current.value = format(day, 'd.MM.yyyy')
-      fromRef.current.focus()
     }
   }
 
@@ -145,32 +151,50 @@ const Calendar = () => {
     setCurrentMonth(subMonths(currentMonth, 1))
   }
 
-  const handleFromFocus = () => {
-    setVisible(true)
+  const handleInputClear = () => {
+    setSelectedStartDate(null)
+    setSelectedEndDate(null)
+    fromRef.current.value = ''
+    untilRef.current.value = ''
   }
 
   return (
-    <Flex margin='20px' direction='column'>
-      <Flex justify='space-between' margin='5px 0'>
-        <TextField style={{ width: '150px' }} placeholder='Начало' ref={fromRef} onFocus={handleFromFocus} />
-        <TextField style={{ width: '150px' }} placeholder='Конец' ref={untilRef} onFocus={handleFromFocus} />
+    <S.CalendarBox ref={clickRef}>
+      <Flex justify='space-between' margin='0 0 5px 0'>
+        <Input
+          width='150px'
+          value='Начало'
+          input='date'
+          ref={fromRef}
+          onClick={() => setVisible(!visible)}
+          title='прибытие'
+        />
+        <Input
+          width='150px'
+          value='Конец'
+          input='date'
+          ref={untilRef}
+          onClick={() => setVisible(!visible)}
+          title='выезд'
+        />
       </Flex>
-      <div className='calendar' style={{ opacity: visible ? '1' : '0' }}>
-        <div style={{ margin: '20px' }}>
+      <S.Calendar visible={visible}>
+        <S.Wrapper>
           {renderHeader()}
           {renderDays()}
           {renderCells()}
           <Flex justify='space-between' margin='20px 0'>
-            <span onClick={() => setVisible(false)} style={{ cursor: 'pointer' }}>
+            <S.Btn
+              onClick={() => {
+                handleInputClear()
+              }}>
               ОЧИСТИТЬ
-            </span>
-            <span onClick={() => setVisible(false)} style={{ cursor: 'pointer' }}>
-              ПРИМЕНИТЬ
-            </span>
+            </S.Btn>
+            <S.Btn onClick={() => setVisible(false)}>ПРИМЕНИТЬ</S.Btn>
           </Flex>
-        </div>
-      </div>
-    </Flex>
+        </S.Wrapper>
+      </S.Calendar>
+    </S.CalendarBox>
   )
 }
 

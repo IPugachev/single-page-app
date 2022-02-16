@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import Flex from '../styles/Flex'
-import Dropdown from '../components/UI/dropdown/Dropdown'
+import Dropdown from '../components/UI/dropdown/index'
 import Calendar from '../components/UI/calendar'
 
 const SearchRoom = () => {
@@ -25,10 +25,12 @@ const SearchRoom = () => {
   return (
     <div className='App'>
       <React.StrictMode>
-        <Flex margin='20px' justify='space-around'>
-          <Dropdown dropdownValues={optionsGuests} onChange={onChangeGuests} type='guests' />
-          <Dropdown dropdownValues={optionsRooms} onChange={onChangeRooms} type='rooms' />
+        <Flex margin='20px' direction='column'>
+          <Dropdown dropdownValues={optionsGuests} onChange={onChangeGuests} type='guests' title='гости' />
+          <Dropdown dropdownValues={optionsRooms} onChange={onChangeRooms} type='rooms' title='удобства номера' />
           <Calendar />
+          <Dropdown dropdownValues={optionsGuests} onChange={onChangeGuests} type='guests' title='гости' />
+          <Dropdown dropdownValues={optionsRooms} onChange={onChangeRooms} type='rooms' title='удобства номера' />
         </Flex>
       </React.StrictMode>
     </div>
