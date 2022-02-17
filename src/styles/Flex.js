@@ -9,6 +9,10 @@ const StyledFlex = styled.div`
   margin: ${({ margin }) => margin || '0'};
   flex-wrap: wrap;
 `
+export const Wrapper = styled.div`
+  margin: ${({ margin }) => margin || '0'};
+  width: fit-content;
+`
 
 const Flex = (props) => {
   return <StyledFlex {...props} />

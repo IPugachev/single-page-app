@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import {
   format,
   startOfWeek,
@@ -11,7 +11,7 @@ import {
   addMonths,
   subMonths,
 } from 'date-fns'
-import Input from '../input/index.'
+import Input from '../input'
 import Flex from '../../../styles/Flex'
 import { ru } from 'date-fns/locale'
 import * as S from './style.jsx'
@@ -32,10 +32,12 @@ const months = [
   'Декабрь',
 ]
 
-const Calendar = () => {
+const Calendar = ({ start, end, filter }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date())
   const [selectedStartDate, setSelectedStartDate] = useState(null)
   const [selectedEndDate, setSelectedEndDate] = useState(null)
+  const [fromStr, setFromStr] = useState('')
+  const [untilStr, setUntilStr] = useState('')
   const [visible, setVisible] = useState(false)
   const fromRef = useRef()
   const untilRef = useRef()
@@ -127,19 +129,29 @@ const Calendar = () => {
       rows.push(<S.RowCells key={day}>{days}</S.RowCells>)
       days = []
     }
-    return <>{rows}</>
+    return rows
   }
+
+  useEffect(() => {
+    filter &&
+      (fromRef.current.value = `${fromStr.substring(0, fromStr.length - 1)}${untilStr.substring(
+        0,
+        untilStr.length - 1
+      )}`)
+  }, [fromStr, untilStr, filter])
 
   const onDateClick = (day) => {
     if (selectedStartDate === null) {
       setSelectedStartDate(day)
-      fromRef.current.value = format(day, 'd.MM.yyyy')
+      !filter ? (fromRef.current.value = format(day, 'd.MM.yyyy')) : setFromStr(format(day, 'd MMM', { locale: ru }))
     } else if (day < selectedStartDate) {
       setSelectedStartDate(day)
-      fromRef.current.value = format(day, 'd.MM.yyyy')
+      !filter ? (fromRef.current.value = format(day, 'd.MM.yyyy')) : setFromStr(format(day, 'd MMM', { locale: ru }))
     } else {
       setSelectedEndDate(day)
-      untilRef.current.value = format(day, 'd.MM.yyyy')
+      !filter
+        ? (untilRef.current.value = format(day, 'd.MM.yyyy'))
+        : setUntilStr(' - ' + format(day, 'd MMM', { locale: ru }))
     }
   }
 
@@ -154,46 +166,67 @@ const Calendar = () => {
   const handleInputClear = () => {
     setSelectedStartDate(null)
     setSelectedEndDate(null)
-    fromRef.current.value = ''
-    untilRef.current.value = ''
+    if (!filter) {
+      fromRef.current.value = ''
+      untilRef.current.value = ''
+    } else {
+      setFromStr('')
+      setUntilStr('')
+    }
   }
 
   return (
     <S.CalendarBox ref={clickRef}>
-      <Flex justify='space-between' margin='0 0 5px 0'>
-        <Input
-          width='150px'
-          value='Начало'
-          input='date'
-          ref={fromRef}
-          onClick={() => setVisible(!visible)}
-          title='прибытие'
-        />
-        <Input
-          width='150px'
-          value='Конец'
-          input='date'
-          ref={untilRef}
-          onClick={() => setVisible(!visible)}
-          title='выезд'
-        />
+      <Flex justify='space-between' margin='0 0 -5px 0'>
+        {!filter && (
+          <Input
+            width='150px'
+            placeholder='ДД.ММ.ГГГГ'
+            input='date'
+            ref={fromRef}
+            onClick={() => setVisible(!visible)}
+            title={start}
+          />
+        )}
+        {!filter && (
+          <Input
+            width='150px'
+            placeholder='ДД.ММ.ГГГГ'
+            input='date'
+            ref={untilRef}
+            onClick={() => setVisible(!visible)}
+            title={end}
+          />
+        )}
+        {filter && (
+          <Input
+            width='266px'
+            placeholder='Выберите даты'
+            input='date'
+            ref={fromRef}
+            onClick={() => setVisible(!visible)}
+            title={start}
+          />
+        )}
       </Flex>
-      <S.Calendar visible={visible}>
-        <S.Wrapper>
-          {renderHeader()}
-          {renderDays()}
-          {renderCells()}
-          <Flex justify='space-between' margin='20px 0'>
-            <S.Btn
-              onClick={() => {
-                handleInputClear()
-              }}>
-              ОЧИСТИТЬ
-            </S.Btn>
-            <S.Btn onClick={() => setVisible(false)}>ПРИМЕНИТЬ</S.Btn>
-          </Flex>
-        </S.Wrapper>
-      </S.Calendar>
+      <div style={{ position: 'relative' }}>
+        <S.Calendar visible={visible}>
+          <S.Wrapper>
+            {renderHeader()}
+            {renderDays()}
+            {renderCells()}
+            <Flex justify='space-between' margin='20px 0'>
+              <S.Btn
+                onClick={() => {
+                  handleInputClear()
+                }}>
+                ОЧИСТИТЬ
+              </S.Btn>
+              <S.Btn onClick={() => setVisible(false)}>ПРИМЕНИТЬ</S.Btn>
+            </Flex>
+          </S.Wrapper>
+        </S.Calendar>
+      </div>
     </S.CalendarBox>
   )
 }

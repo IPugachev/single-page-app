@@ -1,7 +1,8 @@
 import SearchRoom from './pages/SearchRoom'
+import UIKit from './pages/UI Kit'
 
 function App() {
-  return <SearchRoom />
+  return <UIKit />
 }
 
 export default App

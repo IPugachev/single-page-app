@@ -22,7 +22,7 @@ const Dropdown = ({ dropdownValues, onChange, type, title }) => {
   }
 
   const handleSubmit = () => {
-    setDropdownValue(getTitleDropdownByCount(dropdownValues))
+    setDropdownValue(getTitleDropdownByCount(dropdownValues, type))
     toggleVisible()
   }
 
@@ -43,7 +43,7 @@ const Dropdown = ({ dropdownValues, onChange, type, title }) => {
   return (
     <S.Dropdown type={type} ref={clickRef}>
       <S.Title>{title}</S.Title>
-      <S.DtopdownHeadOption>
+      <S.DtopdownHeadOption visible={visibale}>
         {dropdownValue}
         <S.Arrow onClick={toggleVisible} />
       </S.DtopdownHeadOption>

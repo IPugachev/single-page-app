@@ -5,7 +5,7 @@ import { ReactComponent as Ar } from '../../../assets/icons/arrow-down.svg'
 
 export const Dropdown = styled.div`
   width: ${(props) => (props.type === 'guests' ? '320px' : '266px')};
-  height: 64px;
+  margin: 10px 0;
   white-space: nowrap;
   box-sizing: border-box;
   position: relative;
@@ -22,7 +22,7 @@ export const Title = styled.div`
 export const DtopdownHeadOption = styled.div`
   display: flex;
   border: 1px solid rgba(31, 32, 65, 0.25);
-  border-radius: 2px 2px 0 0;
+  border-radius: ${(props) => (props.visible ? '4px 4px 0 0' : '4px')};
   padding: 0 0 0 15px;
   font-size: 14px;
   line-height: 18px;
@@ -44,7 +44,7 @@ export const OptionsBox = styled.div`
   pointer-events: ${(props) => (props.visible ? 'auto' : 'none')};
   border: 1px solid rgba(31, 32, 65, 0.25);
   border-top-style: none;
-  border-radius: 0 0 2px 2px;
+  border-radius: 0 0 4px 4px;
   z-index: 10;
 `
 

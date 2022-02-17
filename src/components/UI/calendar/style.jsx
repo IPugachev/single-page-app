@@ -4,7 +4,6 @@ import { ReactComponent as ArrowForward } from '../../../assets/icons/arrow-forw
 
 export const CalendarBox = styled.div`
   display: flex;
-  position: relative;
   flex-direction: column;
   width: 320px;
 `
@@ -14,13 +13,14 @@ export const Col = styled.div`
 export const Days = styled.div`
   font-size: 12px;
   font-style: normal;
+  font-weight: 700;
   justify-content: space-around;
   display: flex;
 `
 export const Row = styled.div`
   font-weight: bold;
   font-size: 19px;
-  padding-bottom: 30px;
+  padding-bottom: 42.5px;
   line-height: 23px;
   color: #1f2041;
   white-space: nowrap;
@@ -41,7 +41,7 @@ export const Wrapper = styled.div`
 `
 export const Calendar = styled.div`
   position: absolute;
-  top: 69px;
+  top: 0;
   width: 100%;
   border-radius: 4px;
   border: 1px solid rgba(31, 32, 65, 0.25);
@@ -49,6 +49,7 @@ export const Calendar = styled.div`
   line-height: 15px;
   color: #bc9cff;
   opacity: ${(props) => (props.visible ? 1 : 0)};
+  transition: opacity 0.2s linear;
   pointer-events: ${(props) => (props.visible ? 'auto' : 'none')};
   box-shadow: 0px 10px 20px 0px #1f20410d;
   background-color: #ffffff;
