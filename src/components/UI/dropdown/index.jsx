@@ -44,7 +44,7 @@ const Dropdown = ({ dropdownValues, onChange, type, title }) => {
     <S.Dropdown type={type} ref={clickRef}>
       <S.Title>{title}</S.Title>
       <S.DtopdownHeadOption visible={visibale}>
-        {dropdownValue}
+        <span>{dropdownValue}</span>
         <S.Arrow onClick={toggleVisible} />
       </S.DtopdownHeadOption>
       <S.OptionsBox visible={visibale}>

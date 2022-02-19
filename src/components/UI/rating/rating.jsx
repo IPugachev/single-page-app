@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { ReactComponent as Star } from '../../../assets/icons/rate.svg'
+import { ReactComponent as EmptyStar } from '../../../assets/icons/unrate.svg'
 import * as S from './style.jsx'
 
-const RatingBtn = () => {
-  const [rating, setRating] = useState(5)
+const RatingBtn = ({ rating }) => {
   const getRating = () => {
     let ratingArr = []
     for (let i = 1; i < 6; i++) {
-      i > rating ? ratingArr.push(<S.Unrate key={i} />) : ratingArr.push(<S.Rate key={i} />)
+      i > rating ? ratingArr.push(<EmptyStar key={i} />) : ratingArr.push(<Star key={i} />)
     }
     return ratingArr
   }

@@ -8,6 +8,7 @@ import RadioBtn from '../components/UI/radio'
 import Toggle from '../components/UI/toggle'
 import LikeBtn from '../components/UI/like'
 import RatingBtn from '../components/UI/rating/rating'
+import Slider from '../components/UI/slider'
 
 const UIKit = () => {
   const [optionsGuests, setOptionsGuests] = useState([
@@ -62,7 +63,13 @@ const UIKit = () => {
           <RadioBtn title='radio buttons' />
           <Toggle title='toggle' onClick={onChangeToggle} />
           <LikeBtn />
-          <RatingBtn />
+          <RatingBtn rating={4} />
+          <Slider
+            title='range slider'
+            min={0}
+            max={150}
+            onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+          />
         </Flex>
       </React.StrictMode>
     </div>
