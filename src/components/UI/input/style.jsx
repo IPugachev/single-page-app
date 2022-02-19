@@ -1,11 +1,10 @@
 import styled from 'styled-components'
 import { ReactComponent as ArrowDown } from '../../../assets/icons/arrow-down.svg'
-import { ReactComponent as ArrowForward } from '../../../assets/icons/arrow-forward-email.svg'
 import ArrowForwardPath from '../../../assets/icons/arrow-forward-email.svg'
 
 export const Input = styled.div`
   width: ${(props) => props.width || '320px'};
-  margin: 10px 0;
+  margin: 15px 0;
 `
 export const Title = styled.div`
   font-size: 12px;
@@ -50,13 +49,13 @@ export const Arrow = styled(ArrowDown)`
   cursor: pointer;
   display: ${(props) => (props.input === 'date' ? 'block' : 'none')};
 `
-export const ArrowEmail = styled(ArrowForward)`
+export const ArrowEmail = styled.div`
   position: absolute;
-  /* width: 44px;
-  height: 44px; */
+  width: 44px;
+  height: 44px;
   right: 0;
   top: 0;
-  /* background-image: url(${ArrowForwardPath}); */
+  background-image: url(${ArrowForwardPath});
   cursor: pointer;
   display: ${(props) => (props.input === 'email' ? 'block' : 'none')};
 `
