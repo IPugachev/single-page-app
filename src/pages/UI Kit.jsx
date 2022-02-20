@@ -9,6 +9,8 @@ import Toggle from '../components/UI/toggle'
 import LikeBtn from '../components/UI/like'
 import RatingBtn from '../components/UI/rating/rating'
 import Slider from '../components/UI/slider'
+import Button from '../components/UI/button'
+import Pagination from '../components/UI/pagination'
 
 const UIKit = () => {
   const [optionsGuests, setOptionsGuests] = useState([
@@ -47,7 +49,7 @@ const UIKit = () => {
   const onChangeToggle = () => {
     setOptionToggle(!optionToggle)
   }
-
+  const count = 15
   return (
     <div className='App'>
       <React.StrictMode>
@@ -63,13 +65,17 @@ const UIKit = () => {
           <RadioBtn title='radio buttons' />
           <Toggle title='toggle' onClick={onChangeToggle} />
           <LikeBtn />
-          <RatingBtn rating={4} />
+          <RatingBtn rating={3} />
           <Slider
             title='range slider'
             min={0}
             max={150}
             onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
           />
+          <Button text='click me' />
+          <Button type='white' text='click me' />
+          <Button type='long' text='зарегестрироваться' />
+          <Pagination count={15} />
         </Flex>
       </React.StrictMode>
     </div>

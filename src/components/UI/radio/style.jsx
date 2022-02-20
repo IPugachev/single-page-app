@@ -3,6 +3,7 @@ import RadioBtn from '../../../assets/icons/radio-checked.svg'
 
 export const Radio = styled.form`
   margin: 15px 0;
+  width: fit-content;
 `
 export const Title = styled.div`
   font-size: 12px;
