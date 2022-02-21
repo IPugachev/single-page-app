@@ -49,7 +49,7 @@ const UIKit = () => {
   const onChangeToggle = () => {
     setOptionToggle(!optionToggle)
   }
-  const count = 15
+
   return (
     <div className='App'>
       <React.StrictMode>
@@ -74,8 +74,8 @@ const UIKit = () => {
           />
           <Button text='click me' />
           <Button type='white' text='click me' />
-          <Button type='long' text='зарегестрироваться' />
-          <Pagination count={15} />
+          <Button type='long' text='зарегестрироваться' arrow={true} />
+          <Pagination count={9} />
         </Flex>
       </React.StrictMode>
     </div>

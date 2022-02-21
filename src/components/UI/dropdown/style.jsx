@@ -5,7 +5,6 @@ import { ReactComponent as Ar } from '../../../assets/icons/arrow-down.svg'
 
 export const Dropdown = styled.div`
   width: ${(props) => (props.type === 'guests' ? '320px' : '266px')};
-  margin: 15px 0;
   white-space: nowrap;
   box-sizing: border-box;
   position: relative;

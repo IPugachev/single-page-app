@@ -209,7 +209,7 @@ const Calendar = ({ start, end, filter }) => {
           />
         )}
       </Flex>
-      <div style={{ position: 'relative' }}>
+      <div>
         <S.Calendar visible={visible}>
           <S.Wrapper>
             {renderHeader()}

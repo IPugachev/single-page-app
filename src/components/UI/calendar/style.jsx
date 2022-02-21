@@ -6,6 +6,7 @@ export const CalendarBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 320px;
+  position: relative;
 `
 export const Col = styled.div`
   display: flex;
@@ -41,7 +42,7 @@ export const Wrapper = styled.div`
 `
 export const Calendar = styled.div`
   position: absolute;
-  top: -5px;
+  top: 90px;
   width: 100%;
   border-radius: 4px;
   border: 1px solid rgba(31, 32, 65, 0.25);

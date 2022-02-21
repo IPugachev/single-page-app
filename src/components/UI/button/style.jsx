@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { ReactComponent as ArrowForward } from '../../../assets/icons/arrow-forward-pagination.svg'
 
 export const Btn = styled.div`
   background: ${(props) => (props.type === 'white' ? '#ffffff' : 'linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%)')};
@@ -10,7 +11,7 @@ export const Btn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 18px 0;
+  margin: ${(props) => props.margin || '18px 0'};
   transition: 0.3s;
   cursor: pointer;
   ${(props) =>
@@ -55,4 +56,8 @@ export const BtnText = styled.div`
       background-clip: text;
       -webkit-text-fill-color: transparent;
     `}
+`
+export const Arrow = styled(ArrowForward)`
+  position: absolute;
+  right: 0;
 `

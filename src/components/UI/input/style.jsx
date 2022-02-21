@@ -4,7 +4,7 @@ import ArrowForwardPath from '../../../assets/icons/arrow-forward-email.svg'
 
 export const Input = styled.div`
   width: ${(props) => props.width || '320px'};
-  margin: 15px 0;
+  margin: 20px 0;
 `
 export const Title = styled.div`
   font-size: 12px;

@@ -4,6 +4,7 @@ import { ReactComponent as ArrowForward } from '../../../assets/icons/arrow-forw
 
 export const PaginationContainer = styled.div`
   margin-top: 40px;
+  width: fit-content;
 `
 export const PagesBox = styled.div`
   display: flex;
@@ -20,8 +21,22 @@ export const Page = styled.div`
   text-align: center;
   color: rgba(31, 32, 65, 0.5);
   border-radius: 22px;
-  ${(props) => (props.current + 2 <= props.number || props.current - 2 >= props.number) && 'display: none;'};
+  cursor: pointer;
+  ${(props) =>
+    props.number !== -1
+      ? css`
+          &:hover {
+            background-color: rgba(31, 32, 65, 0.1);
+            transition: 0.2s;
+          }
+        `
+      : 'cursor: default;'}
+  ${(props) => (props.current + 3 <= props.number || props.current - 3 >= props.number) && 'display: none;'};
   ${(props) => (props.number === 0 || props.number === props.max) && 'display: flex;'}
+  ${(props) =>
+    ((props.current + 1 <= 3 && props.number <= 5) ||
+      (props.current - 1 >= props.max - 3 && props.number >= props.max - 5)) &&
+    'display: flex;'}
   ${(props) =>
     props.current === props.number &&
     css`
@@ -29,7 +44,7 @@ export const Page = styled.div`
       color: #ffffff;
       font-weight: bold;
     `}
-  cursor: pointer;
+  
   user-select: none;
 `
 export const ArrBack = styled(ArrowBack)`
@@ -42,6 +57,7 @@ export const ArrBack = styled(ArrowBack)`
   border-radius: 22px;
   background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
   cursor: pointer;
+  ${(props) => props.current === 0 && 'opacity: 0; pointer-events: none;'};
 `
 export const ArrForward = styled(ArrowForward)`
   width: 40px;
@@ -53,6 +69,7 @@ export const ArrForward = styled(ArrowForward)`
   border-radius: 22px;
   background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
   cursor: pointer;
+  ${(props) => props.current === props.max && 'opacity: 0; pointer-events: none;'};
 `
 export const PaginationText = styled.div`
   font-size: 14px;
