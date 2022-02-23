@@ -1,24 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { ThemeProvider } from 'styled-components'
 import App from './App'
 import FontStyles from './styles/fontStyles'
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
-
-const Global = createGlobalStyle`
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
-  
-}
-`
-const theme = {
-  colors: {
-    primary: '#1F2041',
-    secondary: '#BC9CFF',
-  },
-}
+import { Global, theme } from './styles/global'
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>

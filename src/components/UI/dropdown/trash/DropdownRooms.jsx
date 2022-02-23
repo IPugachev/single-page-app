@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ReactComponent as Arrow } from '../../../assets/icons/arrow-down.svg'
 import { ReactComponent as IncBtn } from '../../../assets/icons/inc-btn.svg'
 import Flex from '../../../styles/Flex'
-import * as S from './style.jsx'
+import * as S from './style.jsx.js'
 
 const Dropdown = ({ dropdownValues, onChange }) => {
   const [visibale, setVisible] = useState(false)

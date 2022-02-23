@@ -11,11 +11,11 @@ import {
   addMonths,
   subMonths,
 } from 'date-fns'
-import Input from '../input'
+import Input from '../Input'
 import Flex from '../../../styles/Flex'
 import { ru } from 'date-fns/locale'
 import * as S from './style.jsx'
-import { useClickOutside } from '../../hooks/useClickOutside'
+import { useClickOutside } from '../../../hooks/useClickOutside'
 
 const months = [
   'Январь',
@@ -95,7 +95,7 @@ const Calendar = ({ start, end, filter }) => {
         formattedDate = format(day, dateFormat)
         const cloneDay = day
         days.push(
-          <S.CellBg
+          <S.CellBgackground
             className={`${
               dayComp(day)
                 ? selectedEndDate !== null && isSameDay(day, selectedStartDate) && selectedStartDate < selectedEndDate
@@ -122,7 +122,7 @@ const Calendar = ({ start, end, filter }) => {
               onClick={() => onDateClick(cloneDay)}>
               <S.Number>{formattedDate}</S.Number>
             </S.Cell>
-          </S.CellBg>
+          </S.CellBgackground>
         )
         day = addDays(day, 1)
       }

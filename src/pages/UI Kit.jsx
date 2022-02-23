@@ -1,16 +1,16 @@
 import React, { useCallback, useState } from 'react'
 import Flex from '../styles/Flex'
-import Dropdown from '../components/UI/dropdown'
-import Calendar from '../components/UI/calendar'
-import Input from '../components/UI/input'
-import Checkbox from '../components/UI/checkbox'
-import RadioBtn from '../components/UI/radio'
-import Toggle from '../components/UI/toggle'
-import LikeBtn from '../components/UI/like'
-import RatingBtn from '../components/UI/rating/rating'
-import Slider from '../components/UI/slider'
-import Button from '../components/UI/button'
-import Pagination from '../components/UI/pagination'
+import Dropdown from '../components/UI/Dropdown'
+import Calendar from '../components/UI/Calendar'
+import Input from '../components/UI/Input'
+import Checkbox from '../components/UI/Checkbox'
+import RadioBtn from '../components/UI/RadioButton'
+import Toggle from '../components/UI/ToggleButton'
+import LikeBtn from '../components/UI/LikeButton'
+import Rating from '../components/UI/Rating'
+import Slider from '../components/UI/Slider'
+import Button from '../components/UI/Button'
+import Pagination from '../components/UI/Pagination'
 
 const UIKit = () => {
   const [optionsGuests, setOptionsGuests] = useState([
@@ -65,7 +65,7 @@ const UIKit = () => {
           <RadioBtn title='radio buttons' />
           <Toggle title='toggle' onClick={onChangeToggle} />
           <LikeBtn />
-          <RatingBtn rating={3} />
+          <Rating rating={3} />
           <Slider
             title='range slider'
             min={0}
@@ -75,7 +75,7 @@ const UIKit = () => {
           <Button text='click me' />
           <Button type='white' text='click me' />
           <Button type='long' text='зарегестрироваться' arrow={true} />
-          <Pagination count={9} />
+          <Pagination totalPages={20} />
         </Flex>
       </React.StrictMode>
     </div>

@@ -4,7 +4,7 @@ import { ReactComponent as IncBtn } from '../../../assets/icons/inc-btn.svg'
 import { ReactComponent as Ar } from '../../../assets/icons/arrow-down.svg'
 
 export const Dropdown = styled.div`
-  width: ${(props) => (props.type === 'guests' ? '320px' : '266px')};
+  width: ${({ type }) => (type === 'guests' ? '320px' : '266px')};
   white-space: nowrap;
   box-sizing: border-box;
   position: relative;
@@ -12,7 +12,7 @@ export const Dropdown = styled.div`
 export const Title = styled.div`
   font-size: 12px;
   line-height: 15px;
-  color: #1f2041;
+  color: ${({ theme }) => theme.colors.darkShade100};
   font-weight: 700;
   font-style: normal;
   text-transform: uppercase;
@@ -21,11 +21,11 @@ export const Title = styled.div`
 export const DtopdownHeadOption = styled.div`
   display: flex;
   border: 1px solid rgba(31, 32, 65, 0.25);
-  border-radius: ${(props) => (props.visible ? '4px 4px 0 0' : '4px')};
+  border-radius: ${({ visible }) => (visible ? '4px 4px 0 0' : '4px')};
   padding: 0 0 0 15px;
   font-size: 14px;
   line-height: 18px;
-  color: rgba(31, 32, 65, 0.75);
+  color: ${({ theme }) => theme.colors.darkShade75};
   font-weight: 400;
   justify-content: space-between;
   align-items: center;
@@ -38,9 +38,9 @@ export const OptionsBox = styled.div`
   position: absolute;
   flex-direction: column;
   box-shadow: 0px 10px 20px 0px #1f20410d;
-  opacity: ${(props) => (props.visible ? 1 : 0)};
+  opacity: ${({ visible }) => (visible ? 1 : 0)};
   transition: opacity 0.2s linear;
-  pointer-events: ${(props) => (props.visible ? 'auto' : 'none')};
+  pointer-events: ${({ visible }) => (visible ? 'auto' : 'none')};
   border: 1px solid rgba(31, 32, 65, 0.25);
   border-top-style: none;
   border-radius: 0 0 4px 4px;
@@ -52,7 +52,7 @@ export const DropdownOption = styled.div`
   padding: 0 7px 0 15px;
   font-size: 12px;
   line-height: 15px;
-  color: ${(props) => props.theme.colors.primary};
+  color: ${({ theme }) => theme.colors.darkShade100};
   font-weight: 700;
   display: flex;
   justify-content: space-between;
@@ -73,15 +73,15 @@ export const Arrow = styled(Ar)`
   cursor: pointer;
 `
 export const SubmitClearBtn = styled.span`
-  color: ${(props) => props.theme.colors.secondary};
-  pointer-events: ${(props) => (props.visible ? 'none' : 'auto')};
-  opacity: ${(props) => (props.visible ? 0 : 1)};
+  color: ${({ theme }) => theme.colors.purple};
+  pointer-events: ${({ visible }) => (visible ? 'none' : 'auto')};
+  opacity: ${({ visible }) => (visible ? 0 : 1)};
   cursor: pointer;
   user-select: none;
   text-transform: uppercase;
 `
 export const SubmitBtn = styled.span`
-  color: ${(props) => props.theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.purple};
   cursor: pointer;
   user-select: none;
   text-transform: uppercase;

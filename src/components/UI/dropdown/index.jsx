@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react'
 import Flex from '../../../styles/Flex'
 import * as S from './style.jsx'
-import { getTitleDropdownByCount } from '../../../utils/Dropdown.js'
-import { useClickOutside } from '../../hooks/useClickOutside'
+import { getTitleDropdownByCount } from './utils'
+import { useClickOutside } from '../../../hooks/useClickOutside'
 
 const Dropdown = ({ dropdownValues, onChange, type, title }) => {
   const [visibale, setVisible] = useState(false)

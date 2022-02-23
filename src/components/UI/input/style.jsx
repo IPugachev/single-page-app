@@ -3,18 +3,18 @@ import { ReactComponent as ArrowDown } from '../../../assets/icons/arrow-down.sv
 import ArrowForwardPath from '../../../assets/icons/arrow-forward-email.svg'
 
 export const Input = styled.div`
-  width: ${(props) => props.width || '320px'};
-  margin: 20px 0;
+  width: ${({ width }) => width || '320px'};
+  margin: ${({ margin }) => margin || '0'};
 `
 export const Title = styled.div`
   font-size: 12px;
   line-height: 15px;
-  color: #1f2041;
+  color: ${({ theme }) => theme.colors.darkShade100};
   font-weight: 700;
   font-style: normal;
   text-transform: uppercase;
   margin-bottom: 5px;
-  display: ${(props) => (props.title ? 'block' : 'none')};
+  display: ${({ title }) => (title ? 'block' : 'none')};
 `
 export const Wrapper = styled.div`
   position: relative;
@@ -22,20 +22,20 @@ export const Wrapper = styled.div`
 
 export const Field = styled.input`
   width: 100%;
-  color: ${(props) => (props.input === 'date' ? 'rgba(31, 32, 65, 0.75)' : 'rgba(31, 32, 65, 0.25)')};
+  color: ${({ input, theme }) => (input === 'date' ? theme.colors.darkShade75 : theme.colors.darkShade25)};
   border: 1px solid rgba(31, 32, 65, 0.25);
   border-radius: 4px;
   padding: 12px 15px;
   font-size: 14px;
   line-height: 18px;
-  pointer-events: ${(props) => (props.input === 'date' ? 'none' : 'auto')};
+  pointer-events: ${({ input }) => (input === 'date' ? 'none' : 'auto')};
   &:focus {
     outline: none;
-    color: rgba(31, 32, 65, 0.75);
+    color: ${({ theme }) => theme.colors.darkShade75};
     border: 1px solid rgba(31, 32, 65, 0.5);
   }
   &:hover {
-    color: rgba(31, 32, 65, 0.75);
+    color: ${({ theme }) => theme.colors.darkShade75};
     border: 1px solid rgba(31, 32, 65, 0.5);
   }
   &::placeholder {
@@ -47,7 +47,7 @@ export const Arrow = styled(ArrowDown)`
   right: 0;
   top: 0;
   cursor: pointer;
-  display: ${(props) => (props.input === 'date' ? 'block' : 'none')};
+  display: ${({ input }) => (input === 'date' ? 'block' : 'none')};
 `
 export const ArrowEmail = styled.div`
   position: absolute;
@@ -57,5 +57,5 @@ export const ArrowEmail = styled.div`
   top: 0;
   background-image: url(${ArrowForwardPath});
   cursor: pointer;
-  display: ${(props) => (props.input === 'email' ? 'block' : 'none')};
+  display: ${({ input }) => (input === 'email' ? 'block' : 'none')};
 `

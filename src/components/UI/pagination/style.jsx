@@ -19,11 +19,11 @@ export const Page = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: rgba(31, 32, 65, 0.5);
+  color: ${({ theme }) => theme.colors.darkShade50};
   border-radius: 22px;
   cursor: pointer;
-  ${(props) =>
-    props.number !== -1
+  ${({ pageNumber }) =>
+    pageNumber !== -1
       ? css`
           &:hover {
             background-color: rgba(31, 32, 65, 0.1);
@@ -31,23 +31,24 @@ export const Page = styled.div`
           }
         `
       : 'cursor: default;'}
-  ${(props) => (props.current + 3 <= props.number || props.current - 3 >= props.number) && 'display: none;'};
-  ${(props) => (props.number === 0 || props.number === props.max) && 'display: flex;'}
-  ${(props) =>
-    ((props.current + 1 <= 3 && props.number <= 5) ||
-      (props.current - 1 >= props.max - 3 && props.number >= props.max - 5)) &&
+  ${({ currentPage, pageNumber }) =>
+    (currentPage + 3 <= pageNumber || currentPage - 3 >= pageNumber) && 'display: none;'};
+  ${({ pageNumber, totalPages }) => (pageNumber === 0 || pageNumber === totalPages) && 'display: flex;'}
+  ${({ currentPage, pageNumber, totalPages }) =>
+    ((currentPage + 1 <= 3 && pageNumber <= 5) ||
+      (currentPage - 1 >= totalPages - 3 && pageNumber >= totalPages - 5)) &&
     'display: flex;'}
-  ${(props) =>
-    props.current === props.number &&
+  ${({ currentPage, pageNumber }) =>
+    currentPage === pageNumber &&
     css`
-      background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+      background: ${({ theme }) => theme.background.purple};
       color: #ffffff;
       font-weight: bold;
     `}
   
   user-select: none;
 `
-export const ArrBack = styled(ArrowBack)`
+export const ArrowPageBack = styled(ArrowBack)`
   width: 40px;
   height: 40px;
   display: flex;
@@ -55,11 +56,11 @@ export const ArrBack = styled(ArrowBack)`
   justify-content: center;
   text-align: center;
   border-radius: 22px;
-  background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
+  background: ${({ theme }) => theme.background.green};
   cursor: pointer;
-  ${(props) => props.current === 0 && 'opacity: 0; pointer-events: none;'};
+  ${({ currentPage }) => currentPage === 0 && 'opacity: 0; pointer-events: none;'};
 `
-export const ArrForward = styled(ArrowForward)`
+export const ArrowPageForward = styled(ArrowForward)`
   width: 40px;
   height: 40px;
   display: flex;
@@ -67,13 +68,13 @@ export const ArrForward = styled(ArrowForward)`
   justify-content: center;
   text-align: center;
   border-radius: 22px;
-  background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
+  background: ${({ theme }) => theme.background.green};
   cursor: pointer;
-  ${(props) => props.current === props.max && 'opacity: 0; pointer-events: none;'};
+  ${({ currentPage, totalPages }) => currentPage === totalPages && 'opacity: 0; pointer-events: none;'};
 `
 export const PaginationText = styled.div`
   font-size: 14px;
   line-height: 24px;
-  color: rgba(31, 32, 65, 0.75);
+  color: ${({ theme }) => theme.colors.darkShade75};
   text-align: center;
 `

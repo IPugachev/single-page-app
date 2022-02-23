@@ -2,17 +2,18 @@ import styled from 'styled-components'
 import RadioBtn from '../../../assets/icons/radio-checked.svg'
 
 export const Radio = styled.form`
-  margin: 15px 0;
+  margin: ${({ margin }) => margin || '0'};
   width: fit-content;
 `
 export const Title = styled.div`
   font-size: 12px;
   line-height: 15px;
-  color: #1f2041;
+  color: ${({ theme }) => theme.colors.darkShade100};
   font-weight: 700;
   font-style: normal;
   text-transform: uppercase;
   margin-bottom: 16px;
+  display: ${({ title }) => !title && 'none'};
 `
 export const Wrapper = styled.div`
   position: relative;
@@ -26,7 +27,7 @@ export const Label = styled.label`
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
-  color: rgba(31, 32, 65, 0.5);
+  color: ${({ theme }) => theme.colors.darkShade50};
   &::before {
     margin-right: 10px;
     content: '';
@@ -51,7 +52,7 @@ export const Input = styled.input`
   position: absolute;
   cursor: pointer;
   &:checked + ${Label} {
-    color: rgba(31, 32, 65, 0.75);
+    color: ${({ theme }) => theme.colors.darkShade75};
   }
   &:checked + ${Label}::before {
     border: 1px solid #bc9cff;

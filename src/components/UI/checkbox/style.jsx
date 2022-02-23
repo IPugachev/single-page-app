@@ -10,24 +10,24 @@ export const Title = styled.div`
   line-height: 15px;
   display: flex;
   justify-content: space-between;
-  color: #1f2041;
+  color: ${({ theme }) => theme.colors.darkShade100};
   font-weight: 700;
   font-style: normal;
   text-transform: uppercase;
   margin-bottom: 16px;
   align-items: center;
-  cursor: ${(props) => (props.type === 'list' ? 'pointer' : 'default')};
+  cursor: ${({ type }) => (type === 'list' ? 'pointer' : 'default')};
 `
 
 export const CheckboxContainer = styled.div`
   position: relative;
 `
 export const Wrapper = styled.div`
-  position: ${(props) => (props.type === 'list' ? 'absolute' : 'static')};
+  position: ${({ type }) => (type === 'list' ? 'absolute' : 'static')};
   top: 0;
-  opacity: ${(props) => (props.type === 'list' && !props.visible ? 0 : 1)};
+  opacity: ${({ type, visible }) => (type === 'list' && !visible ? 0 : 1)};
   transition: opacity 0.2s linear;
-  pointer-events: ${(props) => (props.type === 'list' && !props.visible ? 'none' : 'auto')};
+  pointer-events: ${({ type, visible }) => (type === 'list' && !visible ? 'none' : 'auto')};
   background-color: white;
   z-index: 1;
 `

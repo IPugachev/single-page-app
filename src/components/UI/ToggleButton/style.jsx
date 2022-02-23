@@ -1,17 +1,18 @@
 import styled from 'styled-components'
 
 export const Toggle = styled.form`
-  margin: 15px 0;
+  margin: ${({ margin }) => margin || '0'};
   width: fit-content;
 `
 export const Title = styled.div`
   font-size: 12px;
   line-height: 15px;
-  color: #1f2041;
+  color: ${({ theme }) => theme.colors.darkShade100};
   font-weight: 700;
   font-style: normal;
   text-transform: uppercase;
   margin-bottom: 16px;
+  display: ${({ title }) => !title && 'none'};
 `
 export const Wrapper = styled.div``
 export const Label = styled.label`
@@ -20,7 +21,7 @@ export const Label = styled.label`
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
-    color: rgba(31, 32, 65, 0.5);
+    color: ${({ theme }) => theme.colors.darkShade50};
   }
   margin-right: 10px;
   position: relative;
@@ -58,7 +59,7 @@ export const Input = styled.input`
     border: 1px solid rgba(188, 156, 255, 1);
   }
   &:checked + ${Slider}::before {
-    background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+    background: ${({ theme }) => theme.background.purple};
     transform: translateX(20px);
   }
 `

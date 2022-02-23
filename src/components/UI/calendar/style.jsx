@@ -23,12 +23,11 @@ export const Row = styled.div`
   font-size: 19px;
   padding-bottom: 42.5px;
   line-height: 23px;
-  color: #1f2041;
   white-space: nowrap;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #1f2041;
+  color: ${({ theme }) => theme.colors.darkShade100};
 `
 export const ArrowB = styled(ArrowBack)`
   cursor: pointer;
@@ -48,10 +47,10 @@ export const Calendar = styled.div`
   border: 1px solid rgba(31, 32, 65, 0.25);
   font-weight: 400;
   line-height: 15px;
-  color: #bc9cff;
-  opacity: ${(props) => (props.visible ? 1 : 0)};
+  color: ${({ theme }) => theme.colors.purple};
+  opacity: ${({ visible }) => (visible ? 1 : 0)};
   transition: opacity 0.2s linear;
-  pointer-events: ${(props) => (props.visible ? 'auto' : 'none')};
+  pointer-events: ${({ visible }) => (visible ? 'auto' : 'none')};
   box-shadow: 0px 10px 20px 0px #1f20410d;
   background-color: #ffffff;
   z-index: 10;
@@ -64,35 +63,35 @@ export const Cell = styled.div`
   justify-content: center;
   align-items: center;
   &.disabled {
-    color: rgba(31, 32, 65, 0.25);
+    color: ${({ theme }) => theme.colors.darkShade25};
   }
   &.selected {
-    background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+    background: ${({ theme }) => theme.background.purple};
     font-weight: 700;
     color: #ffffff;
   }
   &.default {
-    background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%);
+    background: ${({ theme }) => theme.background.green};
     color: #ffffff;
     font-weight: 700;
   }
 `
-export const CellBg = styled.div`
+export const CellBgackground = styled.div`
   flex-grow: 1;
   flex-basis: 0;
   overflow: hidden;
   &.selected {
-    background: linear-gradient(180deg, rgb(188, 156, 255, 0.25) 0%, rgb(139, 164, 249, 0.25) 100%);
+    background: ${({ theme }) => theme.background.purpleBackground};
   }
   &.selected-start {
     border-top-left-radius: 22px;
     border-bottom-left-radius: 22px;
-    background: linear-gradient(180deg, rgb(188, 156, 255, 0.25) 0%, rgb(139, 164, 249, 0.25) 100%);
+    background: ${({ theme }) => theme.background.purpleBackground};
   }
   &.selected-end {
     border-top-right-radius: 22px;
     border-bottom-right-radius: 22px;
-    background: linear-gradient(180deg, rgb(188, 156, 255, 0.25) 0%, rgb(139, 164, 249, 0.25) 100%);
+    background: ${({ theme }) => theme.background.purpleBackground};
   }
   &.unable {
     pointer-events: none;

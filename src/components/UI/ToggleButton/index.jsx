@@ -1,11 +1,11 @@
 import React from 'react'
 import * as S from './style.jsx'
 
-const Toggle = (props) => {
+const Toggle = ({ title, margin }) => {
   return (
-    <S.Toggle>
-      <S.Title>
-        <span>{props.title}</span>
+    <S.Toggle margin={margin}>
+      <S.Title title={title}>
+        <span>{title}</span>
       </S.Title>
       <S.Wrapper>
         <S.Label>
