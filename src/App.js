@@ -1,8 +1,12 @@
-import RegistrationForm from './components/RegistrationForm'
+import Footer from './components/Footer'
 import UIKit from './pages/UI Kit'
 
 function App() {
-  return <RegistrationForm />
+  return (
+    <div style={{ background: 'gray', height: '100vh' }}>
+      <Footer />
+    </div>
+  )
 }
 
 export default App
