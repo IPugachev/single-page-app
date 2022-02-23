@@ -14,16 +14,18 @@ const SearchForm = () => {
     setOptionsGuests(value)
   }, [])
   return (
-    <S.Container>
-      <S.Box>
-        <S.Title>
-          <p>Найдём номера под ваши пожелания</p>
-        </S.Title>
-        <Calendar filter={false} start={'прибытие'} end={'вызед'} />
-        <Dropdown dropdownValues={optionsGuests} type='guests' onChange={onChangeGuests} title='dropdown' />
-        <Button type='long' text='подобрать номер' arrow={true} margin='30px 0 0 0' />
-      </S.Box>
-    </S.Container>
+    <S.Form>
+      <S.Title>Найдём номера под ваши пожелания</S.Title>
+      <Calendar filter={false} start={'прибытие'} end={'вызед'} />
+      <Dropdown
+        dropdownValues={optionsGuests}
+        type='guests'
+        onChange={onChangeGuests}
+        title='гости'
+        margin='20px 0 0'
+      />
+      <Button type='long' text='подобрать номер' arrow={true} margin='30px 0 0 0' />
+    </S.Form>
   )
 }
 

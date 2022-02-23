@@ -4,7 +4,7 @@ import * as S from './style.jsx'
 import { getTitleDropdownByCount } from './utils'
 import { useClickOutside } from '../../../hooks/useClickOutside'
 
-const Dropdown = ({ dropdownValues, onChange, type, title }) => {
+const Dropdown = ({ dropdownValues, onChange, type, title, margin }) => {
   const [visibale, setVisible] = useState(false)
   const [dropdownValue, setDropdownValue] = useState(type === 'guests' ? 'Сколько гостей' : '2 спальни, 2 кровати')
 
@@ -41,7 +41,7 @@ const Dropdown = ({ dropdownValues, onChange, type, title }) => {
   const handleValue = dropdownValues.map((val) => val.count).every((e) => e === 0)
 
   return (
-    <S.Dropdown type={type} ref={clickRef}>
+    <S.Dropdown type={type} ref={clickRef} margin={margin}>
       <S.Title>{title}</S.Title>
       <S.DtopdownHeadOption visible={visibale}>
         <span>{dropdownValue}</span>

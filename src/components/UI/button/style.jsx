@@ -13,14 +13,12 @@ export const Button = styled.a`
   align-items: center;
   margin: ${({ margin }) => margin || '0'};
   transition: 0.3s;
-  border: none;
   text-decoration: none;
   cursor: pointer;
   &:hover {
-    ${({ type }) => (type !== 'white' ? 'opacity:0.5' : 'border: 3px solid rgba(188, 156, 255, 0.5)')}
+    ${({ type }) => (type !== 'white' ? 'opacity:0.5' : 'border: 2px solid rgba(188, 156, 255, 0.5)')}
   }
-
-  ${({ type, theme }) => type === 'white' && 'border: 3px solid ' + theme.colors.purple}
+  ${({ type, theme }) => type === 'white' && 'border: 2px solid ' + theme.colors.purple}
 `
 export const ButtonText = styled.p`
   font-size: 12px;

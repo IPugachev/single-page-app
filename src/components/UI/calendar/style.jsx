@@ -41,7 +41,7 @@ export const Wrapper = styled.div`
 `
 export const Calendar = styled.div`
   position: absolute;
-  top: 90px;
+  top: 70px;
   width: 100%;
   border-radius: 4px;
   border: 1px solid rgba(31, 32, 65, 0.25);

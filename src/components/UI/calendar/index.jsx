@@ -42,12 +42,13 @@ const Calendar = ({ start, end, filter }) => {
   const fromRef = useRef()
   const untilRef = useRef()
   const clickRef = useRef()
-
   const dayComp = (day) => {
     return day > new Date() || isSameDay(day, new Date())
   }
 
   useClickOutside(clickRef, () => setVisible(false))
+
+  // console.log((selectedEndDate - selectedStartDate) / 86400000) для счета суток
 
   const renderHeader = () => {
     const dateFormat = 'yyyy'
@@ -177,7 +178,7 @@ const Calendar = ({ start, end, filter }) => {
 
   return (
     <S.CalendarBox ref={clickRef}>
-      <Flex justify='space-between' margin='0 0 -5px 0'>
+      <Flex justify='space-between'>
         {!filter && (
           <Input
             width='150px'

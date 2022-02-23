@@ -51,7 +51,7 @@ export const ItemLink = styled.a`
 export const IconContainer = styled.div`
   display: flex;
   align-items: center;
-  & * {
+  & > * {
     margin-left: 20px;
   }
 `

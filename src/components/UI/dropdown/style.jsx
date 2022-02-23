@@ -8,6 +8,7 @@ export const Dropdown = styled.div`
   white-space: nowrap;
   box-sizing: border-box;
   position: relative;
+  margin: ${({ margin }) => margin || 0};
 `
 export const Title = styled.div`
   font-size: 12px;
@@ -20,7 +21,7 @@ export const Title = styled.div`
 `
 export const DtopdownHeadOption = styled.div`
   display: flex;
-  border: 1px solid rgba(31, 32, 65, 0.25);
+  border: 1px solid ${({ visible, theme }) => (visible ? theme.colors.darkShade50 : theme.colors.darkShade25)};
   border-radius: ${({ visible }) => (visible ? '4px 4px 0 0' : '4px')};
   padding: 0 0 0 15px;
   font-size: 14px;
@@ -41,10 +42,10 @@ export const OptionsBox = styled.div`
   opacity: ${({ visible }) => (visible ? 1 : 0)};
   transition: opacity 0.2s linear;
   pointer-events: ${({ visible }) => (visible ? 'auto' : 'none')};
-  border: 1px solid rgba(31, 32, 65, 0.25);
+  border: 1px solid ${({ theme }) => theme.colors.darkShade50};
   border-top-style: none;
   border-radius: 0 0 4px 4px;
-  z-index: 10;
+  background-color: #ffffff;
 `
 
 export const DropdownOption = styled.div`
@@ -57,7 +58,6 @@ export const DropdownOption = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
 `
 
 export const DecrBtn = styled(DecBtn)`
