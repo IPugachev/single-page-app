@@ -46,6 +46,7 @@ export const OptionsBox = styled.div`
   border-top-style: none;
   border-radius: 0 0 4px 4px;
   background-color: #ffffff;
+  z-index: 1;
 `
 
 export const DropdownOption = styled.div`

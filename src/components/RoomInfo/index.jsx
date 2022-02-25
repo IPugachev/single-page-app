@@ -3,6 +3,7 @@ import Calendar from '../UI/Calendar'
 import Dropdown from '../UI/Dropdown'
 import Button from '../UI/Button'
 import { ReactComponent as Info } from '../../assets/icons/info.svg'
+import { splitNumbers } from '../utils/splitNumbers'
 import * as S from './style'
 
 const RoomInfo = () => {
@@ -29,7 +30,7 @@ const RoomInfo = () => {
           {luxury && <span> люкс</span>}
         </S.Title>
         <S.Subtitle>
-          <span>{price}₽</span> в сутки
+          <span>{splitNumbers(price)}₽</span> в сутки
         </S.Subtitle>
       </S.HeaderSection>
       <Calendar filter={false} start={'прибытие'} end={'вызед'} />
@@ -37,9 +38,9 @@ const RoomInfo = () => {
       <S.PriceInfo>
         <S.Item>
           <span>
-            {price}₽ х {time} суток
+            {splitNumbers(price)}₽ х {time} суток
           </span>
-          <span>{price * time}₽</span>
+          <span>{splitNumbers(price * time)}₽</span>
         </S.Item>
         <S.Item>
           <span>

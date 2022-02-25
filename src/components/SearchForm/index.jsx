@@ -4,7 +4,7 @@ import Calendar from '../UI/Calendar'
 import Dropdown from '../UI/Dropdown'
 import * as S from './style.jsx'
 
-const SearchForm = () => {
+const SearchForm = ({ title = 'Найдём номера под ваши пожелания' }) => {
   const [optionsGuests, setOptionsGuests] = useState([
     { title: 'взрослые', count: 0 },
     { title: 'дети', count: 0 },
@@ -15,7 +15,7 @@ const SearchForm = () => {
   }, [])
   return (
     <S.Form>
-      <S.Title>Найдём номера под ваши пожелания</S.Title>
+      <S.Title>{title}</S.Title>
       <Calendar filter={false} start={'прибытие'} end={'вызед'} />
       <Dropdown
         dropdownValues={optionsGuests}

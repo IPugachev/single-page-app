@@ -7,11 +7,13 @@ import BulletList from './components/BulletList'
 import UIKit from './pages/UI Kit'
 import RichCheckbox from './components/UI/Checkbox/Rich'
 import { useState } from 'react'
+import Comment from './components/Comment'
+import LandingPage from './pages/LandingPage'
 
 function App() {
   return (
-    <div style={{ height: '100vh', padding: '30px' }}>
-      <BulletList />
+    <div style={{}}>
+      <LandingPage />
     </div>
   )
 }

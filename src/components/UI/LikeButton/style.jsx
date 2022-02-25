@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const LikeWrapper = styled.div`
-  margin-top: 14px;
   display: flex;
   align-items: center;
   border: 1px solid ${({ click }) => (click ? '#BC9CFF' : 'rgba(31, 32, 65, 0.25)')};

@@ -4,6 +4,7 @@ export const Footer = styled.footer`
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
+  width: 100%;
 `
 
 export const InfoBox = styled.nav`
