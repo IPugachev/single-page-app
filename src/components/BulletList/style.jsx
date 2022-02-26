@@ -8,11 +8,11 @@ export const Container = styled.div`
   width: 266px;
 `
 export const Title = styled.h5`
+  margin-left: 20px;
   margin-bottom: 16px;
   font-weight: 700;
   font-size: 12px;
   line-height: 15px;
-  text-transform: uppercase;
   color: ${({ theme }) => theme.colors.darkShade100};
   display: ${({ title }) => (title && 'block') || 'none'};
 `

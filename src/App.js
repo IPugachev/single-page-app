@@ -10,11 +10,12 @@ import { useState } from 'react'
 import Comment from './components/Comment'
 import LandingPage from './pages/LandingPage'
 import RegistrationPage from './pages/RegistrationPage'
+import RoomPage from './pages/RoomPage'
 
 function App() {
   return (
     <div style={{}}>
-      <RegistrationPage />
+      <RoomPage />
     </div>
   )
 }

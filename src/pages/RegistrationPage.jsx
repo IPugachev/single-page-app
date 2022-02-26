@@ -17,6 +17,7 @@ const Body = styled.div`
 `
 const Main = styled.div`
   position: relative;
+  width: 100%;
 `
 const Registration = styled.div`
   position: absolute;

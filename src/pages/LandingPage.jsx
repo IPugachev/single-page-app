@@ -21,6 +21,7 @@ const Search = styled.div`
 `
 const Main = styled.div`
   position: relative;
+  width: 100%;
 `
 const BackgroundImg = styled.img`
   width: 100%;

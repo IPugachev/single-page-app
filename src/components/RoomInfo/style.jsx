@@ -4,6 +4,7 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 380px;
+  height: fit-content;
   padding: 40px 30px 30px;
   background-color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.12);
@@ -29,7 +30,7 @@ export const Title = styled.h4`
     color: ${({ theme }) => theme.colors.purple};
   }
 `
-export const Subtitle = styled.h5`
+export const Subtitle = styled.p`
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
@@ -55,7 +56,7 @@ export const Item = styled.div`
     align-items: center;
   }
 `
-export const TotalPrice = styled.div`
+export const TotalPrice = styled.h4`
   font-weight: 700;
   font-size: 19px;
   line-height: 23px;

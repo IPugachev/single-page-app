@@ -11,8 +11,7 @@ const commentInfo = {
 const commentText =
   'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.'
 
-const Comment = () => {
-  console.log(Math.random())
+const Comment = (props) => {
   return (
     <S.Container>
       <S.UserBox>

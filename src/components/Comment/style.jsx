@@ -26,6 +26,7 @@ export const TextBlock = styled.div`
   color: ${({ theme }) => theme.colors.darkShade75};
 `
 export const UserStatus = styled.div`
+  margin-bottom: 10px;
   & p:first-child {
     font-weight: 700;
   }

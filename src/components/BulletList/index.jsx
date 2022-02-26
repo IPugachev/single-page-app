@@ -3,7 +3,7 @@ import * as S from './style'
 
 const items = ['Нельзя с питомцами', 'Без вечеринок и мероприятий', 'Время прибытия — после 13:00, а выезд до 12:00']
 
-const BulletList = ({ title = 'bullet list', margin }) => {
+const BulletList = ({ title, margin }) => {
   return (
     <S.Container margin={margin}>
       <S.Title title={title}>{title}</S.Title>
