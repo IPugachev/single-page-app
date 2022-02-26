@@ -4,7 +4,7 @@ import Calendar from '../UI/Calendar'
 import Dropdown from '../UI/Dropdown'
 import * as S from './style.jsx'
 
-const SearchForm = ({ title = 'Найдём номера под ваши пожелания' }) => {
+const SearchForm = ({ title = 'Найдём номера под ваши пожелания', onClick }) => {
   const [optionsGuests, setOptionsGuests] = useState([
     { title: 'взрослые', count: 0 },
     { title: 'дети', count: 0 },

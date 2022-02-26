@@ -5,7 +5,7 @@ import { ReactComponent as ExpandArrow } from '../../assets/icons/expand-arrow.s
 import Button from '../UI/Button'
 import * as S from './style.jsx'
 
-const Header = ({ isUserLogged = true, userName = 'Юлий Цезарь' }) => {
+const Header = ({ isUserLogged = false, userName = 'Юлий Цезарь' }) => {
   return (
     <S.Header>
       <S.LogoBox>

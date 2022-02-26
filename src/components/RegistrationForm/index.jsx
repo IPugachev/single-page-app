@@ -6,7 +6,7 @@ import Input from '../UI/Input'
 import * as S from './style.jsx'
 import Flex from '../../styles/Flex'
 
-const RegistrationForm = () => {
+const RegistrationForm = (props) => {
   return (
     <S.Form>
       <S.Title>Регистрация аккаунта</S.Title>
@@ -21,7 +21,7 @@ const RegistrationForm = () => {
       <Button type='long' text='перейти к оплате' arrow={true} margin='20px 0 30px' />
       <Flex justify='space-between' align='center'>
         <S.Underline>Уже есть аккаунт на Toxin</S.Underline>
-        <Button type='white' text='войти' />
+        <Button type='white' text='войти' action={props.onClick} />
       </Flex>
     </S.Form>
   )

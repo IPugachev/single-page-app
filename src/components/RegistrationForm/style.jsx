@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Form = styled.form`
+export const Form = styled.div`
   padding: 40px 30px 30px;
   display: flex;
   justify-content: center;
@@ -17,7 +17,7 @@ export const Title = styled.h4`
   line-height: 29px;
   color: ${({ theme }) => theme.colors.darkShade100};
 `
-export const Underline = styled.div`
+export const Underline = styled.p`
   font-size: 14px;
   line-height: 18px;
   color: #000000;

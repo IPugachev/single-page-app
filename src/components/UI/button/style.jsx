@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { ReactComponent as ArrowForward } from '../../../assets/icons/arrow-forward-pagination.svg'
 
-export const Button = styled.a`
+export const Button = styled.button`
   background: ${({ type, theme }) => (type === 'white' ? '#ffffff' : theme.background.purple)};
   position: relative;
   border-radius: 22px;
@@ -14,6 +14,7 @@ export const Button = styled.a`
   margin: ${({ margin }) => margin || '0'};
   transition: 0.3s;
   text-decoration: none;
+  border: none;
   cursor: pointer;
   &:hover {
     ${({ type }) => (type !== 'white' ? 'opacity:0.5' : 'border: 2px solid rgba(188, 156, 255, 0.5)')}

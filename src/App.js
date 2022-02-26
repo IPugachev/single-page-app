@@ -9,11 +9,12 @@ import RichCheckbox from './components/UI/Checkbox/Rich'
 import { useState } from 'react'
 import Comment from './components/Comment'
 import LandingPage from './pages/LandingPage'
+import RegistrationPage from './pages/RegistrationPage'
 
 function App() {
   return (
     <div style={{}}>
-      <LandingPage />
+      <RegistrationPage />
     </div>
   )
 }

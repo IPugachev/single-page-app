@@ -9,7 +9,7 @@ import SearchForm from '../components/SearchForm'
 
 const Body = styled.div`
   max-width: 100vw;
-  min-width: 740px;
+  min-width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
