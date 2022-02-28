@@ -4,7 +4,7 @@ import { ReactComponent as IncBtn } from '../../../assets/icons/inc-btn.svg'
 import { ReactComponent as Ar } from '../../../assets/icons/arrow-down.svg'
 
 export const Dropdown = styled.div`
-  width: ${({ type }) => (type === 'guests' ? '320px' : '266px')};
+  width: 100%;
   white-space: nowrap;
   box-sizing: border-box;
   position: relative;
@@ -46,7 +46,7 @@ export const OptionsBox = styled.div`
   border-top-style: none;
   border-radius: 0 0 4px 4px;
   background-color: #ffffff;
-  z-index: 1;
+  z-index: 5;
 `
 
 export const DropdownOption = styled.div`

@@ -8,6 +8,7 @@ export const Header = styled.header`
   align-items: center;
   justify-content: space-between;
   background-color: #ffffff;
+  box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.05);
 `
 export const LogoBox = styled.div`
   display: flex;

@@ -11,12 +11,20 @@ import Comment from './components/Comment'
 import LandingPage from './pages/LandingPage'
 import RegistrationPage from './pages/RegistrationPage'
 import RoomPage from './pages/RoomPage'
+import SerachRoomsPage from './pages/SearchRoomsPage'
+import RoomCard from './components/UI/RoomItem'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import SearchRoomsPage from './pages/SearchRoomsPage'
+import { store } from './store'
 
 function App() {
   return (
-    <div style={{}}>
-      <RoomPage />
-    </div>
+    <Provider store={store}>
+      <div style={{}}>
+        <SearchRoomsPage />
+      </div>
+    </Provider>
   )
 }
 

@@ -3,20 +3,20 @@ import * as S from './style.jsx'
 import { ReactComponent as ArrowExpand } from '../../../../assets/icons/expand-arrow.svg'
 import { ReactComponent as ArrowClose } from '../../../../assets/icons/close-arrow.svg'
 
-const optionsCheckboxList = [
-  { title: 'Завтрак', handle: false },
-  { title: 'Письменный стол', handle: false },
-  { title: 'Стул для кормления', handle: false },
-  { title: 'Кроватка', handle: false },
-  { title: 'Телевизор', handle: false },
-  { title: 'Шампунь', handle: false },
-]
+// const optionsCheckboxList = [
+//   { title: 'Завтрак', handle: false },
+//   { title: 'Письменный стол', handle: false },
+//   { title: 'Стул для кормления', handle: false },
+//   { title: 'Кроватка', handle: false },
+//   { title: 'Телевизор', handle: false },
+//   { title: 'Шампунь', handle: false },
+// ]
 
-const optionsCheckboxButtons = [
-  { title: 'Можно курить', handle: false },
-  { title: 'Можно с питомцами', handle: false },
-  { title: 'Можно пригласить гостей (до 10 человек)', handle: false },
-]
+// const optionsCheckboxButtons = [
+//   { title: 'Можно курить', handle: false },
+//   { title: 'Можно с питомцами', handle: false },
+//   { title: 'Можно пригласить гостей (до 10 человек)', handle: false },
+// ]
 
 const DefaultCheckbox = (props) => {
   const [handler, setHandler] = useState(false)
@@ -33,7 +33,7 @@ const DefaultCheckbox = (props) => {
       </S.Title>
       <S.CheckboxContainer>
         <S.Wrapper visible={handler} type={props.type}>
-          {optionsCheckboxList.map((item, index) => (
+          {props.options.map((item, index) => (
             <div key={index}>
               <S.Input type='checkbox' id={item.title} />
               <S.Label htmlFor={item.title}>

@@ -5,7 +5,7 @@ import { ReactComponent as ArrowForward } from '../../../assets/icons/arrow-forw
 export const CalendarBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 320px;
+  /* width: 320px; */
   position: relative;
 `
 export const Col = styled.div`

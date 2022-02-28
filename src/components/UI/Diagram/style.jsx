@@ -108,6 +108,7 @@ export const GreatString = styled.div`
   line-height: 24px;
   display: flex;
   align-items: center;
+  color: ${({ theme }) => theme.colors.darkShade75};
   & div {
     width: 10px;
     height: 10px;

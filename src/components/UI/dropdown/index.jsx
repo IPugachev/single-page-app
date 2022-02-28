@@ -3,8 +3,17 @@ import Flex from '../../../styles/Flex'
 import * as S from './style.jsx'
 import { getTitleDropdownByCount } from './utils'
 import { useClickOutside } from '../../../hooks/useClickOutside'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Dropdown = ({ dropdownValues, onChange, type, title, margin }) => {
+  const log = useSelector((state) => state)
+  const dispatch = useDispatch()
+
+  const sub = () => {
+    dispatch({ type: 'sub' })
+    console.log(log)
+  }
+
   const [visibale, setVisible] = useState(false)
   const [dropdownValue, setDropdownValue] = useState(type === 'guests' ? 'Сколько гостей' : '2 спальни, 2 кровати')
 
@@ -24,6 +33,7 @@ const Dropdown = ({ dropdownValues, onChange, type, title, margin }) => {
   const handleSubmit = () => {
     setDropdownValue(getTitleDropdownByCount(dropdownValues, type))
     toggleVisible()
+    sub()
   }
 
   const decCount = (index) => {

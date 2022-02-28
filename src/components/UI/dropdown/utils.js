@@ -17,7 +17,7 @@ export const getTitleDropdownByCount = (values, type) => {
       ${arr[0] + arr[1] !== 0 ? arr[0] + arr[1] + ' ' + g : ''}${arr[2] !== 0 ? z + arr[2] + ' ' + m : ''}
     `)
     : handleValue
-    ? (result = 'Удобства')
+    ? (result = 'Выберите удобства')
     : (result = `
       ${arr[0] !== 0 ? arr[0] + ' ' + r : ''}${arr[1] !== 0 ? z1 + arr[1] + ' ' + b : ''}${
         arr[2] !== 0 ? z2 + arr[2] + ' ' + v : ''

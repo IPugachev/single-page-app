@@ -3,14 +3,14 @@ import * as S from './style.jsx'
 import { ReactComponent as ArrowExpand } from '../../../../assets/icons/expand-arrow.svg'
 import { ReactComponent as ArrowClose } from '../../../../assets/icons/close-arrow.svg'
 
-const optionsCheckboxList = [
-  { title: 'Широкий коридор', subtitle: 'Ширина коридоров в номере не менее 91 см.', handle: false },
-  {
-    title: 'Помощник для инвалидов',
-    subtitle: 'На 1 этаже вас встретит специалист и проводит до номера.',
-    handle: false,
-  },
-]
+// const optionsCheckboxList = [
+//   { title: 'Широкий коридор', subtitle: 'Ширина коридоров в номере не менее 91 см.', handle: false },
+//   {
+//     title: 'Помощник для инвалидов',
+//     subtitle: 'На 1 этаже вас встретит специалист и проводит до номера.',
+//     handle: false,
+//   },
+// ]
 
 const RichCheckbox = (props) => {
   const [handler, setHandler] = useState(false)
@@ -27,7 +27,7 @@ const RichCheckbox = (props) => {
       </S.Title>
       <S.CheckboxContainer>
         <S.Wrapper visible={handler} type={props.type}>
-          {optionsCheckboxList.map((item, index) => (
+          {props.options.map((item, index) => (
             <div key={index}>
               <S.Input type='checkbox' id={item.title} />
               <S.Label htmlFor={item.title}>
