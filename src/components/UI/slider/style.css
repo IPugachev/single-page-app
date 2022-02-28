@@ -15,7 +15,7 @@
 }
 .slider {
   position: relative;
-  width: 266px;
+  width: 100%;
 }
 .slider__title {
   font-style: normal;
@@ -67,7 +67,7 @@
   position: absolute;
   top: 2.5px;
   height: 0;
-  width: 266px;
+  width: 100%;
   outline: none;
 }
 

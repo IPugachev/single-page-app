@@ -9,15 +9,14 @@ const defaultState = {
     { title: 'кровати', count: 2 },
     { title: 'ванные комнаты', count: 0 },
   ],
-  value: 0,
 }
 
-export const guestsReducer = (state = defaultState, action) => {
+export const dropdownReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case 'add':
-      return { ...state, value: state.value + 1 }
-    case 'sub':
-      return { ...state, value: state.value - 1 }
+    case 'CHANGE_GUESTS':
+      return { ...state, guests: action.update }
+    case 'CHANGE_ROOMS':
+      return { ...state, rooms: action.update }
     default:
       return state
   }

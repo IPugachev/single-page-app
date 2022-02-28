@@ -1,9 +1,14 @@
 import React, { useCallback, useEffect, useState, useRef } from 'react'
 import classnames from 'classnames'
-import PropTypes from 'prop-types'
 import './style.css'
+import { useDispatch, useSelector } from 'react-redux'
 
-const Slider = ({ min, max, onChange, title }) => {
+const Slider = ({ title }) => {
+  const defaultValues = useSelector((state) => state.slider.defaultValues)
+  const min = useSelector((state) => state.slider.min)
+  const max = useSelector((state) => state.slider.max)
+  const dispatch = useDispatch()
+
   const [minVal, setMinVal] = useState(min)
   const [maxVal, setMaxVal] = useState(max)
   const minValRef = useRef(null)
@@ -11,7 +16,10 @@ const Slider = ({ min, max, onChange, title }) => {
   const range = useRef(null)
 
   // Convert to percentage
-  const getPercent = useCallback((value) => Math.round(((value - min) / (max - min)) * 100), [min, max])
+  const getPercent = useCallback(
+    (value) => Math.round(((value - defaultValues.min) / (defaultValues.max - defaultValues.min)) * 100),
+    [defaultValues]
+  )
 
   // Set width of the range to decrease from the left side
   useEffect(() => {
@@ -40,8 +48,8 @@ const Slider = ({ min, max, onChange, title }) => {
 
   // Get min and max values when their state changes
   useEffect(() => {
-    onChange({ min: minVal, max: maxVal })
-  }, [minVal, maxVal, onChange])
+    dispatch({ type: 'CHANGE_SLIDER', update: { min: minVal, max: maxVal } })
+  }, [minVal, maxVal, dispatch])
 
   return (
     <div className='container'>
@@ -52,8 +60,8 @@ const Slider = ({ min, max, onChange, title }) => {
       <div className='container-range'>
         <input
           type='range'
-          min={min}
-          max={max}
+          min={defaultValues.min}
+          max={defaultValues.max}
           value={minVal}
           ref={minValRef}
           onChange={(event) => {
@@ -67,8 +75,8 @@ const Slider = ({ min, max, onChange, title }) => {
         />
         <input
           type='range'
-          min={min}
-          max={max}
+          min={defaultValues.min}
+          max={defaultValues.max}
           value={maxVal}
           ref={maxValRef}
           onChange={(event) => {
@@ -85,12 +93,6 @@ const Slider = ({ min, max, onChange, title }) => {
       </div>
     </div>
   )
-}
-
-Slider.propTypes = {
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  onChange: PropTypes.func.isRequired,
 }
 
 export default Slider

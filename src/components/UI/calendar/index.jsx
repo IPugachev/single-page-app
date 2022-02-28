@@ -32,7 +32,7 @@ const months = [
   'Декабрь',
 ]
 
-const Calendar = ({ start, end, filter }) => {
+const Calendar = ({ start, end, date }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date())
   const [selectedStartDate, setSelectedStartDate] = useState(null)
   const [selectedEndDate, setSelectedEndDate] = useState(null)
@@ -78,7 +78,7 @@ const Calendar = ({ start, end, filter }) => {
         </div>
       )
     }
-    return <S.Days>{days}</S.Days>
+    return <S.Days date={date}>{days}</S.Days>
   }
 
   const renderCells = () => {
@@ -127,30 +127,41 @@ const Calendar = ({ start, end, filter }) => {
         )
         day = addDays(day, 1)
       }
-      rows.push(<S.RowCells key={day}>{days}</S.RowCells>)
+      rows.push(
+        <S.RowCells date={date} key={day}>
+          {days}
+        </S.RowCells>
+      )
       days = []
     }
     return rows
   }
 
   useEffect(() => {
-    filter &&
+    date === 'filter' &&
       (fromRef.current.value = `${fromStr.substring(0, fromStr.length - 1)}${untilStr.substring(
         0,
         untilStr.length - 1
       )}`)
-  }, [fromStr, untilStr, filter])
+  }, [fromStr, untilStr, date])
 
   const onDateClick = (day) => {
     if (selectedStartDate === null) {
       setSelectedStartDate(day)
-      !filter ? (fromRef.current.value = format(day, 'd.MM.yyyy')) : setFromStr(format(day, 'd MMM', { locale: ru }))
+      console.log(format(day, 'd MM y', { locale: ru }))
+      date !== 'filter'
+        ? (fromRef.current.value = format(day, 'd.MM.yyyy'))
+        : setFromStr(format(day, 'd MMM', { locale: ru }))
     } else if (day < selectedStartDate) {
       setSelectedStartDate(day)
-      !filter ? (fromRef.current.value = format(day, 'd.MM.yyyy')) : setFromStr(format(day, 'd MMM', { locale: ru }))
+      console.log(format(day, 'd MM y', { locale: ru }))
+      date !== 'filter'
+        ? (fromRef.current.value = format(day, 'd.MM.yyyy'))
+        : setFromStr(format(day, 'd MMM', { locale: ru }))
     } else {
       setSelectedEndDate(day)
-      !filter
+      console.log(format(day, 'd MM y', { locale: ru }))
+      date !== 'filter'
         ? (untilRef.current.value = format(day, 'd.MM.yyyy'))
         : setUntilStr(' - ' + format(day, 'd MMM', { locale: ru }))
     }
@@ -167,7 +178,7 @@ const Calendar = ({ start, end, filter }) => {
   const handleInputClear = () => {
     setSelectedStartDate(null)
     setSelectedEndDate(null)
-    if (!filter) {
+    if (date !== 'filter') {
       fromRef.current.value = ''
       untilRef.current.value = ''
     } else {
@@ -179,7 +190,7 @@ const Calendar = ({ start, end, filter }) => {
   return (
     <S.CalendarBox ref={clickRef}>
       <Flex justify='space-between'>
-        {!filter && (
+        {date !== 'filter' && (
           <Input
             width='150px'
             placeholder='ДД.ММ.ГГГГ'
@@ -189,7 +200,7 @@ const Calendar = ({ start, end, filter }) => {
             title={start}
           />
         )}
-        {!filter && (
+        {date !== 'filter' && (
           <Input
             width='150px'
             placeholder='ДД.ММ.ГГГГ'
@@ -199,9 +210,9 @@ const Calendar = ({ start, end, filter }) => {
             title={end}
           />
         )}
-        {filter && (
+        {date === 'filter' && (
           <Input
-            width='266px'
+            width='100%'
             placeholder='Выберите даты'
             input='date'
             ref={fromRef}

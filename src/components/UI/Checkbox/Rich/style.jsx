@@ -16,19 +16,8 @@ export const Title = styled.div`
   font-style: normal;
   text-transform: uppercase;
   margin-bottom: 16px;
-  cursor: ${({ type }) => (type === 'list' ? 'pointer' : 'default')};
 `
 
-export const CheckboxContainer = styled.div`
-  position: relative;
-`
-export const Wrapper = styled.div`
-  position: ${({ type }) => (type === 'list' ? 'absolute' : 'static')};
-  top: 0;
-  transition: opacity 0.2s linear;
-  opacity: ${({ type, visible }) => (type === 'list' && !visible ? 0 : 1)};
-  pointer-events: ${({ type, visible }) => (type === 'list' && !visible ? 'none' : 'auto')};
-`
 export const Label = styled.label`
   user-select: none;
   margin-bottom: 10px;

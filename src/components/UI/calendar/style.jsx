@@ -5,7 +5,7 @@ import { ReactComponent as ArrowForward } from '../../../assets/icons/arrow-forw
 export const CalendarBox = styled.div`
   display: flex;
   flex-direction: column;
-  /* width: 320px; */
+  width: 100%;
   position: relative;
 `
 export const Col = styled.div`
@@ -13,6 +13,7 @@ export const Col = styled.div`
 `
 export const Days = styled.div`
   font-size: 12px;
+  line-height: ${({ date }) => (date === 'filter' ? '32px' : '40px')};
   font-style: normal;
   font-weight: 700;
   justify-content: space-around;
@@ -21,7 +22,7 @@ export const Days = styled.div`
 export const Row = styled.div`
   font-weight: bold;
   font-size: 19px;
-  padding-bottom: 42.5px;
+  padding-bottom: 30px;
   line-height: 23px;
   white-space: nowrap;
   display: flex;
@@ -56,7 +57,7 @@ export const Calendar = styled.div`
   z-index: 10;
 `
 export const Cell = styled.div`
-  height: 40px;
+  height: 100%;
   cursor: pointer;
   border-radius: 22px;
   display: flex;
@@ -80,6 +81,7 @@ export const CellBgackground = styled.div`
   flex-grow: 1;
   flex-basis: 0;
   overflow: hidden;
+  height: 100%;
   &.selected {
     background: ${({ theme }) => theme.background.purpleBackground};
   }
@@ -105,9 +107,10 @@ export const RowCells = styled.div`
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
+  height: ${({ date }) => (date === 'filter' ? '32px' : '40px')};
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
+  position: relative;
 `
 export const Btn = styled.span`
   cursor: pointer;

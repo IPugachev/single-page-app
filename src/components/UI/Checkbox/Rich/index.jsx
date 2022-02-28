@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import * as S from './style.jsx'
-import { ReactComponent as ArrowExpand } from '../../../../assets/icons/expand-arrow.svg'
-import { ReactComponent as ArrowClose } from '../../../../assets/icons/close-arrow.svg'
+import { useDispatch, useSelector } from 'react-redux'
 
 // const optionsCheckboxList = [
 //   { title: 'Широкий коридор', subtitle: 'Ширина коридоров в номере не менее 91 см.', handle: false },
@@ -13,33 +12,30 @@ import { ReactComponent as ArrowClose } from '../../../../assets/icons/close-arr
 // ]
 
 const RichCheckbox = (props) => {
-  const [handler, setHandler] = useState(false)
+  const richCheckbox = useSelector((state) => state.checkbox.rich)
+  const dispatch = useDispatch()
 
-  const handlerSwitch = () => {
-    props.type === 'list' && setHandler(!handler)
+  const changer = (event, title) => {
+    let arrayCopy = richCheckbox.map(
+      (item) => (item.title === title && { ...item, handle: event.target.checked }) || { ...item }
+    )
+    dispatch({ type: 'CHANGE_CHECKBOX_RICH', update: arrayCopy })
   }
 
   return (
     <S.Checkbox margin={props.margin}>
-      <S.Title title={props.title} onClick={handlerSwitch} type={props.type}>
-        {props.title}
-        {props.type === 'list' && (handler ? <ArrowClose /> : <ArrowExpand />)}
-      </S.Title>
-      <S.CheckboxContainer>
-        <S.Wrapper visible={handler} type={props.type}>
-          {props.options.map((item, index) => (
-            <div key={index}>
-              <S.Input type='checkbox' id={item.title} />
-              <S.Label htmlFor={item.title}>
-                <S.Item>
-                  <p>{item.title}</p>
-                  <span>{item.subtitle}</span>
-                </S.Item>
-              </S.Label>
-            </div>
-          ))}
-        </S.Wrapper>
-      </S.CheckboxContainer>
+      <S.Title title={props.title}>{props.title}</S.Title>
+      {richCheckbox.map((item, index) => (
+        <div key={index}>
+          <S.Input type='checkbox' id={item.title} onChange={(event) => changer(event, item.title)} />
+          <S.Label htmlFor={item.title}>
+            <S.Item>
+              <p>{item.title}</p>
+              <span>{item.subtitle}</span>
+            </S.Item>
+          </S.Label>
+        </div>
+      ))}
     </S.Checkbox>
   )
 }

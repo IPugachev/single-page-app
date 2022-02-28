@@ -33,83 +33,19 @@ const Sidebar = styled.div`
 `
 
 const SearchRoomsPage = () => {
-  // Dropdown state
-
-  const [optionsGuests, setOptionsGuests] = useState([
-    { title: 'взрослые', count: 0 },
-    { title: 'дети', count: 0 },
-    { title: 'младенцы', count: 0 },
-  ])
-  const [optionsRooms, setOptionsRooms] = useState([
-    { title: 'спальни', count: 2 },
-    { title: 'кровати', count: 2 },
-    { title: 'ванные комнаты', count: 0 },
-  ])
-
-  const onChangeRooms = useCallback((value) => {
-    setOptionsRooms(value)
-  }, [])
-  const onChangeGuests = useCallback((value) => {
-    setOptionsGuests(value)
-  }, [])
-
-  // Checkbox state
-
-  const [optionsCheckboxList, setOptionsCheckboxList] = useState([
-    { title: 'Завтрак', handle: false },
-    { title: 'Письменный стол', handle: false },
-    { title: 'Стул для кормления', handle: false },
-    { title: 'Кроватка', handle: false },
-    { title: 'Телевизор', handle: false },
-    { title: 'Шампунь', handle: false },
-  ])
-  const [optionsCheckboxButtons, setOptionsCheckboxButtons] = useState([
-    { title: 'Можно курить', handle: false },
-    { title: 'Можно с питомцами', handle: false },
-    { title: 'Можно пригласить гостей (до 10 человек)', handle: false },
-  ])
-
-  const [optionsRichCheckbox, setOptionsRichCheckbox] = useState([
-    { title: 'Широкий коридор', subtitle: 'Ширина коридоров в номере не менее 91 см.', handle: false },
-    {
-      title: 'Помощник для инвалидов',
-      subtitle: 'На 1 этаже вас встретит специалист и проводит до номера.',
-      handle: false,
-    },
-  ])
-
-  //
-
   return (
     <Body>
       <Header />
       <Main>
         <Sidebar>
-          <Calendar filter={true} start={'даты пребывания в отеле'} />
-          <Dropdown
-            dropdownValues={optionsGuests}
-            type='guests'
-            onChange={onChangeGuests}
-            title='гости'
-            margin='20px 0 30px'
-          />
-          <Slider
-            title='диапазон цены'
-            min={0}
-            max={150}
-            onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
-          />
+          <Calendar date='filter' start={'даты пребывания в отеле'} />
+          <Dropdown type='guests' title='гости' margin='20px 0 30px' />
+          <Slider title='диапазон цены' />
           <p>Стоимость за сутки пребывания в номере</p>
-          <DefaultCheckbox title='правила дома' options={optionsCheckboxButtons} margin='30px 0' />
-          <RichCheckbox title='доступность' options={optionsRichCheckbox} />
-          <Dropdown
-            dropdownValues={optionsRooms}
-            type='rooms'
-            onChange={onChangeRooms}
-            title='удобства номера'
-            margin='30px 0'
-          />
-          <DefaultCheckbox title='дополнительные удобства' type='list' options={optionsCheckboxList} />
+          <DefaultCheckbox title='правила дома' margin='30px 0' />
+          <RichCheckbox title='доступность' />
+          <Dropdown type='rooms' title='удобства номера' margin='30px 0' />
+          <DefaultCheckbox title='дополнительные удобства' type='list' />
         </Sidebar>
         <div></div>
       </Main>

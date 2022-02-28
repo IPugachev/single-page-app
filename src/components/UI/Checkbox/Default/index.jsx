@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import * as S from './style.jsx'
 import { ReactComponent as ArrowExpand } from '../../../../assets/icons/expand-arrow.svg'
 import { ReactComponent as ArrowClose } from '../../../../assets/icons/close-arrow.svg'
+import { useDispatch, useSelector } from 'react-redux'
 
 // const optionsCheckboxList = [
 //   { title: 'Завтрак', handle: false },
@@ -19,8 +20,20 @@ import { ReactComponent as ArrowClose } from '../../../../assets/icons/close-arr
 // ]
 
 const DefaultCheckbox = (props) => {
-  const [handler, setHandler] = useState(false)
+  const listCheckbox = useSelector((state) => state.checkbox.list)
+  const defaultCheckbox = useSelector((state) => state.checkbox.default)
+  const dispatch = useDispatch()
+  const initialValue = props.type === 'list' ? listCheckbox : defaultCheckbox
+  const initialAction = props.type === 'list' ? 'CHANGE_CHECKBOX_LIST' : 'CHANGE_CHECKBOX_DEFAULT'
 
+  const changer = (event, title) => {
+    let arrayCopy = initialValue.map(
+      (item) => (item.title === title && { ...item, handle: event.target.checked }) || { ...item }
+    )
+    dispatch({ type: initialAction, update: arrayCopy })
+  }
+
+  const [handler, setHandler] = useState(false)
   const handlerSwitch = () => {
     props.type === 'list' && setHandler(!handler)
   }
@@ -33,9 +46,9 @@ const DefaultCheckbox = (props) => {
       </S.Title>
       <S.CheckboxContainer>
         <S.Wrapper visible={handler} type={props.type}>
-          {props.options.map((item, index) => (
+          {initialValue.map((item, index) => (
             <div key={index}>
-              <S.Input type='checkbox' id={item.title} />
+              <S.Input type='checkbox' id={item.title} onChange={(event) => changer(event, item.title)} />
               <S.Label htmlFor={item.title}>
                 <span>{item.title}</span>
               </S.Label>
