@@ -7,7 +7,7 @@ import * as S from './style'
 //   alright: 5,
 //   bad: 1,
 // }
-const reviews = [80, 40, 40, 0]
+const reviews = [100, 100, 200, 1]
 const sum = reviews[0] + reviews[1] + reviews[2] + reviews[3]
 
 const Diagram = () => {
