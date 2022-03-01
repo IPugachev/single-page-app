@@ -4,12 +4,15 @@ import { ReactComponent as Toxin } from '../../assets/icons/toxin.svg'
 import { ReactComponent as ExpandArrow } from '../../assets/icons/expand-arrow.svg'
 import Button from '../UI/Button'
 import * as S from './style.jsx'
+import { Link } from 'react-router-dom'
 
 const Header = ({ isUserLogged = false, userName = 'Юлий Цезарь' }) => {
   return (
     <S.Header>
       <S.LogoBox>
-        <Logo style={{ marginRight: '12.5px' }} />
+        <Link to='/'>
+          <Logo style={{ marginRight: '12.5px' }} />
+        </Link>
         <Toxin />
       </S.LogoBox>
       <S.InfoBox>

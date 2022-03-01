@@ -11,6 +11,7 @@ const price = 9990
 const reviews = 123
 
 const RoomCard = () => {
+  const ratingValue = 4
   return (
     <S.RoomCard>
       <S.BackgroundRoom src={Background} alt='Background' />
@@ -26,7 +27,7 @@ const RoomCard = () => {
           </S.Subtitle>
         </S.Upper>
         <S.Lower>
-          <Rating rating={4} />
+          <Rating rating={ratingValue} />
           <S.Reviews>
             <span>{reviews}</span> Отзывов
           </S.Reviews>

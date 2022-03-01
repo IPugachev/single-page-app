@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { ReactComponent as ArrowForward } from '../../../assets/icons/arrow-forward-pagination.svg'
+import { Link } from 'react-router-dom'
 
 export const Button = styled.button`
   background: ${({ type, theme }) => (type === 'white' ? '#ffffff' : theme.background.purple)};
@@ -40,4 +41,7 @@ export const ButtonText = styled.p`
 export const Arrow = styled(ArrowForward)`
   position: absolute;
   right: 0;
+`
+export const ButtonLink = styled(Link)`
+  text-decoration: none;
 `
