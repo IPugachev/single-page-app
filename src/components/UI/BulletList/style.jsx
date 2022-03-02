@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { ReactComponent as IconDot } from '../../assets/icons/list-dot.svg'
+import { ReactComponent as IconDot } from '../../../assets/icons/list-dot.svg'
 
 export const Container = styled.div`
   margin: ${({ margin }) => margin || ''};

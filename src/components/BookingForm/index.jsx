@@ -6,8 +6,11 @@ import { ReactComponent as Info } from '../../assets/icons/info.svg'
 import { splitNumbers } from '../utils/splitNumbers'
 import * as S from './style'
 import { initialValues } from '../Sidebar/data'
+import { useSelector } from 'react-redux'
 
 const BookingForm = () => {
+  const dropdownInitialValues = useSelector((state) => state.filter)
+
   const luxury = true
   const number = 888
   const price = 9990
@@ -26,7 +29,7 @@ const BookingForm = () => {
         </S.Subtitle>
       </S.HeaderSection>
       <Calendar filter={false} start={'прибытие'} end={'вызед'} />
-      <Dropdown initialValues={initialValues.guests} type='guests' title='гости' margin='20px 0' />
+      <Dropdown initialValues={dropdownInitialValues.guests} type='guests' title='гости' margin='20px 0' />
       <S.PriceInfo>
         <S.Item>
           <span>

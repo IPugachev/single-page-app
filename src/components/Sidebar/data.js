@@ -28,8 +28,8 @@ export const initialValues = {
     { title: 'младенцы', count: 0, name: 'guestsBabies' },
   ],
   rooms: [
-    { title: 'спальни', count: 2, name: 'bedrooms' },
-    { title: 'кровати', count: 2, name: 'beds' },
+    { title: 'спальни', count: 0, name: 'bedrooms' },
+    { title: 'кровати', count: 0, name: 'beds' },
     { title: 'ванные комнаты', count: 0, name: 'bathrooms' },
   ],
   slider: [

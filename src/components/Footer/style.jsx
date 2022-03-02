@@ -5,6 +5,7 @@ export const Footer = styled.footer`
   flex-direction: column;
   background-color: #ffffff;
   width: 100%;
+  min-width: 1200px;
   box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.05);
 `
 

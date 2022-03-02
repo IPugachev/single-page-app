@@ -3,12 +3,10 @@ import * as S from './style'
 
 const Button = ({ type, text, arrow, margin, width, href }) => {
   return (
-    <S.ButtonLink to='/search'>
-      <S.Button href={href} type={type} margin={margin} width={width}>
-        <S.ButtonText type={type}>{text}</S.ButtonText>
-        {arrow && <S.Arrow />}
-      </S.Button>
-    </S.ButtonLink>
+    <S.Button type={type} margin={margin} width={width}>
+      <S.ButtonText type={type}>{text}</S.ButtonText>
+      {arrow && <S.Arrow />}
+    </S.Button>
   )
 }
 

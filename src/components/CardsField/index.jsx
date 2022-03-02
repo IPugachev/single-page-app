@@ -13,22 +13,23 @@ const CardsField = ({ title }) => {
   }
   const state = useSelector((state) => state.filter)
   const filteredArray = filter(state, cardsData)
-  console.log(filteredArray)
   return (
     <S.CardsField>
       <S.Title>{title}</S.Title>
-      <S.CardsBox>
-        {filteredArray.map(
-          (item, index) =>
-            item !== false &&
-            index > currentPage * 12 - 1 &&
-            index < currentPage * 12 + 12 && (
-              <S.CardLink to={`/${item.link}`} key={index}>
-                <RoomCard initialValues={item} key={index} />
-              </S.CardLink>
-            )
-        )}
-      </S.CardsBox>
+      <S.Wrapper>
+        <S.CardsBox>
+          {filteredArray.map(
+            (item, index) =>
+              item !== false &&
+              index > currentPage * 12 - 1 &&
+              index < currentPage * 12 + 12 && (
+                <S.CardLink to={`/${item.link}`} key={index}>
+                  <RoomCard initialValues={item} key={index} />
+                </S.CardLink>
+              )
+          )}
+        </S.CardsBox>
+      </S.Wrapper>
       <Pagination maxPages={Math.ceil(filteredArray.length / 12)} onClick={setPage} />
     </S.CardsField>
   )

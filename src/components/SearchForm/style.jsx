@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const Form = styled.form`
@@ -18,4 +19,7 @@ export const Title = styled.h4`
   font-style: normal;
   color: ${({ theme }) => theme.colors.darkShade100};
   margin-bottom: 20px;
+`
+export const ButtonLink = styled(Link)`
+  text-decoration: none;
 `

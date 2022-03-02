@@ -4,70 +4,67 @@ import * as S from './style.jsx'
 import { getTitleDropdownByCount } from './utils'
 import { useClickOutside } from '../../../hooks/useClickOutside'
 import { useDispatch } from 'react-redux'
-import { changeValues } from '../../../store/filter/action'
+import { changeDropdownValues } from '../../../store/filter/action'
 
 const Dropdown = ({ type, title, margin, initialValues }) => {
-  const [values, setValues] = useState(initialValues)
-  const [visibale, setVisible] = useState(false)
-  const [dropdownValue, setDropdownValue] = useState(type === 'guests' ? 'Сколько гостей' : '2 спальни, 2 кровати')
+  const [dropdownValue, setDropdownValue] = useState(getTitleDropdownByCount(initialValues, type))
+  const [visible, setVisible] = useState(false)
+  // console.log(initialValues)
+  const [visibleValue, setVisibleValue] = useState(initialValues)
 
   const clickRef = useRef()
   useClickOutside(clickRef, () => setVisible(false))
 
   const dispatch = useDispatch()
-  const reducer = (newValue) => {
-    dispatch(changeValues(newValue.name, newValue.count))
-  }
 
   const toggleVisible = () => {
     setVisible((prev) => !prev)
   }
 
   const handleClear = () => {
-    let actualValues = values.map((value) => ({ ...value, count: 0 }))
-    for (let val of actualValues) {
-      dispatch(changeValues(val.name, val.count))
-    }
-    setValues(actualValues)
-    setDropdownValue('Сколько гостей')
+    const actualValues = visibleValue.map((value) => ({ ...value, count: 0 }))
+    dispatch(changeDropdownValues(type, actualValues))
+    setVisibleValue(actualValues)
+    setDropdownValue(getTitleDropdownByCount(actualValues, type))
   }
 
   const handleSubmit = () => {
-    setDropdownValue(getTitleDropdownByCount(values, type))
+    setDropdownValue(getTitleDropdownByCount(visibleValue, type))
+    dispatch(changeDropdownValues(type, visibleValue))
     toggleVisible()
   }
 
-  const decCount = (index, option) => {
-    const actualValues = values.map((item, i) =>
+  const decCount = (index) => {
+    const actualValues = visibleValue.map((item, i) =>
       index === i && item.count > 0 ? { ...item, count: --item.count } : item
     )
-    setValues(actualValues)
-    reducer(option)
-    type === 'rooms' && setDropdownValue(getTitleDropdownByCount(values, type))
+    setVisibleValue(actualValues)
+    type === 'rooms' && setDropdownValue(getTitleDropdownByCount(actualValues, type))
+    type === 'rooms' && dispatch(changeDropdownValues(type, actualValues))
   }
-  const incCount = (index, option) => {
-    const actualValues = values.map((item, i) => (index === i ? { ...item, count: ++item.count } : item))
-    setValues(actualValues)
-    reducer(option)
-    type === 'rooms' && setDropdownValue(getTitleDropdownByCount(values))
+  const incCount = (index) => {
+    const actualValues = visibleValue.map((item, i) => (index === i ? { ...item, count: ++item.count } : item))
+    setVisibleValue(actualValues)
+    type === 'rooms' && setDropdownValue(getTitleDropdownByCount(actualValues, type))
+    type === 'rooms' && dispatch(changeDropdownValues(type, actualValues))
   }
-  const handleValue = values.map((val) => val.count).every((e) => e === 0)
+  const handleValue = visibleValue.map((val) => val.count).every((e) => e === 0)
 
   return (
     <S.Dropdown type={type} ref={clickRef} margin={margin}>
       <S.Title>{title}</S.Title>
-      <S.DtopdownHeadOption visible={visibale}>
+      <S.DtopdownHeadOption visible={visible}>
         <span>{dropdownValue}</span>
         <S.Arrow onClick={toggleVisible} />
       </S.DtopdownHeadOption>
-      <S.OptionsBox visible={visibale}>
-        {values.map((option, index) => (
+      <S.OptionsBox visible={visible}>
+        {visibleValue.map((option, index) => (
           <S.DropdownOption key={index} value={option.title}>
             <Flex>{option.title.toUpperCase()}</Flex>
             <Flex justify='space-between' align='center' style={{ width: '92px', userSelect: 'none' }}>
-              <S.DecrBtn opacity={option.count > 0 ? '1' : '0.2'} onClick={() => decCount(index, option)} />
+              <S.DecrBtn opacity={option.count > 0 ? '1' : '0.2'} onClick={() => decCount(index)} />
               {option.count}
-              <S.IncrBtn onClick={() => incCount(index, option)} />
+              <S.IncrBtn onClick={() => incCount(index)} />
             </Flex>
           </S.DropdownOption>
         ))}

@@ -1,9 +1,11 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const Header = styled.header`
   padding: 0 140px;
   height: 70px;
   width: 100%;
+  min-width: 1200px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -28,7 +30,7 @@ export const NavBar = styled.nav`
   align-items: center;
   width: fit-content;
 `
-export const Link = styled.a`
+export const HeaderLink = styled.a`
   font-size: 14px;
   line-height: 17px;
   color: ${({ theme }) => theme.colors.darkShade50};
@@ -38,11 +40,7 @@ export const Link = styled.a`
     font-weight: bold;
   }
 `
-export const ButtonBox = styled.div`
-  display: flex;
-  align-items: center;
-  width: fit-content;
-`
+export const ButtonBox = styled.div``
 export const User = styled.a`
   display: flex;
   align-items: center;
@@ -53,4 +51,10 @@ export const User = styled.a`
   text-decoration: none;
   color: ${({ theme }) => theme.colors.darkShade50};
   border-left: 1px solid rgba(31, 32, 65, 0.1);
+`
+export const ButtonLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  text-decoration: none;
 `

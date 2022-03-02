@@ -1,6 +1,6 @@
 export const getTitleDropdownByCount = (values, type) => {
   let arr = values.map((item) => item.count)
-  const handleValue = values.map((val) => val.count).every((e) => e === 0)
+  let handleValue = values.map((val) => val.count).every((e) => e === 0)
   let g = arr[1] + arr[0] > 4 ? 'гостей' : arr[1] + arr[0] === 1 ? 'гость' : 'гостя'
   let m = arr[2] > 4 ? 'младенцев' : arr[2] === 1 ? 'младенец' : 'младенца'
   let z = arr[0] + arr[1] !== 0 ? ', ' : ''

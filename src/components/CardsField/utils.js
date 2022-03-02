@@ -1,12 +1,12 @@
 export const filter = (state, cardsData) => {
-  let arr = cardsData.map((item) => {
-    let guests = state.guestsAdults + state.guestsKids + state.guestsBabies < item.maxGuests,
+  let cardsArray = cardsData.map((item) => {
+    let guests = state.guests[0].count + state.guests[1].count + state.guests[2].count <= item.maxGuests,
       price = state.from * 100 <= item.price && item.price <= state.to * 100,
       table = state.table === true ? item.table : true,
       breakfast = state.breakfast === true ? item.breakfast : true,
-      bathrooms = state.bathrooms === item.bathrooms || state.bathrooms === 0,
-      beds = state.beds >= item.beds || state.beds === 0,
-      bedrooms = state.bedrooms >= item.bedrooms || state.bedrooms === 0,
+      bedrooms = state.rooms[0].count <= item.bedrooms,
+      beds = state.rooms[1].count <= item.beds,
+      bathrooms = state.rooms[2].count <= item.bathrooms,
       wideHall = state.wideHall === true ? item.wideHall : true,
       party = state.party === true ? item.party : true,
       pets = state.pets === true ? item.pets : true,
@@ -36,8 +36,8 @@ export const filter = (state, cardsData) => {
       ? item
       : false
   })
-  arr.sort()
-  let indexOfFalse = arr.indexOf(false)
-  arr = arr.splice(0, indexOfFalse !== -1 ? indexOfFalse : arr.length)
-  return arr
+  cardsArray.sort()
+  let indexOfFalse = cardsArray.indexOf(false)
+  cardsArray = cardsArray.splice(0, indexOfFalse !== -1 ? indexOfFalse : cardsArray.length)
+  return cardsArray
 }
