@@ -1,8 +1,7 @@
-import React, { useCallback, useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import Sidebar from '../components/Sidebar'
+import CardsField from '../../components/CardsField'
+import Sidebar from '../../components/Sidebar'
 
 const Body = styled.div`
   max-width: 100vw;
@@ -10,22 +9,22 @@ const Body = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-bottom: 1px solid rgba(31, 32, 65, 0.25);
 `
 const Main = styled.div`
   width: 100%;
   padding: 30px 140px 70px;
   display: flex;
+  justify-content: center;
 `
 
 const SearchRoomsPage = () => {
   return (
     <Body>
-      <Header />
       <Main>
         <Sidebar />
-        <div></div>
+        <CardsField title='Номера, которые мы для вас подобрали' />
       </Main>
-      <Footer />
     </Body>
   )
 }

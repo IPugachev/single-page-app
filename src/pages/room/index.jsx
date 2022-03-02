@@ -1,15 +1,13 @@
 import React from 'react'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import Room1 from '../assets/backgrounds/room1.png'
-import Room2 from '../assets/backgrounds/room2.png'
-import Room3 from '../assets/backgrounds/room3.png'
+import Room1 from '../../assets/backgrounds/room1.png'
+import Room2 from '../../assets/backgrounds/room2.png'
+import Room3 from '../../assets/backgrounds/room3.png'
 import styled from 'styled-components'
-import RoomInfo from '../components/RoomInfo'
-import Datails from '../components/UI/Datails'
-import Diagram from '../components/UI/Diagram'
-import Comment from '../components/Comment'
-import BulletList from '../components/BulletList'
+import BookingForm from '../../components/BookingForm'
+import Datails from '../../components/UI/Datails'
+import Diagram from '../../components/UI/Diagram'
+import Comment from '../../components/Comment'
+import BulletList from '../../components/BulletList'
 
 const Body = styled.div`
   max-width: 100vw;
@@ -100,7 +98,6 @@ const Cancel = styled.div`
 const RoomPage = () => {
   return (
     <Body>
-      <Header />
       <BackgroundGroup>
         <BackgroundImg src={Room1} alt='background' />
         <div>
@@ -141,9 +138,8 @@ const RoomPage = () => {
             </Cancel>
           </NoteBlock>
         </PageSection>
-        <RoomInfo />
+        <BookingForm />
       </Main>
-      <Footer />
     </Body>
   )
 }

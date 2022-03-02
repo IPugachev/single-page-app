@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const RoomCard = styled.div`
   width: 270px;
+  height: fit-content;
   background: #ffffff;
   box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.05);
 `

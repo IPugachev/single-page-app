@@ -1,25 +1,17 @@
-import React, { useCallback, useState } from 'react'
+import React from 'react'
 import Calendar from '../UI/Calendar'
 import Dropdown from '../UI/Dropdown'
 import Button from '../UI/Button'
 import { ReactComponent as Info } from '../../assets/icons/info.svg'
 import { splitNumbers } from '../utils/splitNumbers'
 import * as S from './style'
+import { initialValues } from '../Sidebar/data'
 
-const RoomInfo = () => {
+const BookingForm = () => {
   const luxury = true
   const number = 888
   const price = 9990
   const time = 4
-
-  const [optionsGuests, setOptionsGuests] = useState([
-    { title: 'взрослые', count: 0 },
-    { title: 'дети', count: 0 },
-    { title: 'младенцы', count: 0 },
-  ])
-  const onChangeGuests = useCallback((value) => {
-    setOptionsGuests(value)
-  }, [])
 
   return (
     <S.Form>
@@ -34,7 +26,7 @@ const RoomInfo = () => {
         </S.Subtitle>
       </S.HeaderSection>
       <Calendar filter={false} start={'прибытие'} end={'вызед'} />
-      <Dropdown dropdownValues={optionsGuests} type='guests' onChange={onChangeGuests} title='гости' margin='20px 0' />
+      <Dropdown initialValues={initialValues.guests} type='guests' title='гости' margin='20px 0' />
       <S.PriceInfo>
         <S.Item>
           <span>
@@ -65,4 +57,4 @@ const RoomInfo = () => {
   )
 }
 
-export default RoomInfo
+export default BookingForm

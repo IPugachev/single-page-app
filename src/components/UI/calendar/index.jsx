@@ -16,6 +16,8 @@ import Flex from '../../../styles/Flex'
 import { ru } from 'date-fns/locale'
 import * as S from './style.jsx'
 import { useClickOutside } from '../../../hooks/useClickOutside'
+import { useDispatch } from 'react-redux'
+import { changeValues } from '../../../store/filter/action'
 
 const months = [
   'Январь',
@@ -45,7 +47,7 @@ const Calendar = ({ start, end, date }) => {
   const dayComp = (day) => {
     return day > new Date() || isSameDay(day, new Date())
   }
-
+  const dispatch = useDispatch()
   useClickOutside(clickRef, () => setVisible(false))
 
   // console.log((selectedEndDate - selectedStartDate) / 86400000) для счета суток
@@ -148,19 +150,19 @@ const Calendar = ({ start, end, date }) => {
   const onDateClick = (day) => {
     if (selectedStartDate === null) {
       setSelectedStartDate(day)
-      console.log(format(day, 'd MM y', { locale: ru }))
+      dispatch(changeValues('entryDate', format(day, 'd MM y')))
       date !== 'filter'
         ? (fromRef.current.value = format(day, 'd.MM.yyyy'))
         : setFromStr(format(day, 'd MMM', { locale: ru }))
     } else if (day < selectedStartDate) {
       setSelectedStartDate(day)
-      console.log(format(day, 'd MM y', { locale: ru }))
+      dispatch(changeValues('entryDate', format(day, 'd MM y')))
       date !== 'filter'
         ? (fromRef.current.value = format(day, 'd.MM.yyyy'))
         : setFromStr(format(day, 'd MMM', { locale: ru }))
     } else {
       setSelectedEndDate(day)
-      console.log(format(day, 'd MM y', { locale: ru }))
+      dispatch(changeValues('endDate', format(day, 'd MM y')))
       date !== 'filter'
         ? (untilRef.current.value = format(day, 'd.MM.yyyy'))
         : setUntilStr(' - ' + format(day, 'd MMM', { locale: ru }))

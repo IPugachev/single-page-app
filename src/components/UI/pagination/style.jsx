@@ -31,15 +31,15 @@ export const Page = styled.div`
           }
         `
       : 'cursor: default;'}
-  ${({ currentPage, pageNumber }) =>
-    (currentPage + 3 <= pageNumber || currentPage - 3 >= pageNumber) && 'display: none;'};
-  ${({ pageNumber, totalPages }) => (pageNumber === 0 || pageNumber === totalPages) && 'display: flex;'}
-  ${({ currentPage, pageNumber, totalPages }) =>
-    ((currentPage + 1 <= 3 && pageNumber <= 5) ||
-      (currentPage - 1 >= totalPages - 3 && pageNumber >= totalPages - 5)) &&
+  ${({ currentpage, pageNumber }) =>
+    (currentpage + 3 <= pageNumber || currentpage - 3 >= pageNumber) && 'display: none;'};
+  ${({ pageNumber, totalpages }) => (pageNumber === 0 || pageNumber === totalpages) && 'display: flex;'}
+  ${({ currentpage, pageNumber, totalpages }) =>
+    ((currentpage + 1 <= 3 && pageNumber <= 5) ||
+      (currentpage - 1 >= totalpages - 3 && pageNumber >= totalpages - 5)) &&
     'display: flex;'}
-  ${({ currentPage, pageNumber }) =>
-    currentPage === pageNumber &&
+  ${({ currentpage, pageNumber }) =>
+    currentpage === pageNumber &&
     css`
       background: ${({ theme }) => theme.background.purple};
       color: #ffffff;
@@ -58,7 +58,7 @@ export const ArrowPageBack = styled(ArrowBack)`
   border-radius: 22px;
   background: ${({ theme }) => theme.background.green};
   cursor: pointer;
-  ${({ currentPage }) => currentPage === 0 && 'opacity: 0; pointer-events: none;'};
+  ${({ currentpage }) => currentpage === 0 && 'opacity: 0; pointer-events: none;'};
 `
 export const ArrowPageForward = styled(ArrowForward)`
   width: 40px;
@@ -70,7 +70,7 @@ export const ArrowPageForward = styled(ArrowForward)`
   border-radius: 22px;
   background: ${({ theme }) => theme.background.green};
   cursor: pointer;
-  ${({ currentPage, totalPages }) => currentPage === totalPages && 'opacity: 0; pointer-events: none;'};
+  ${({ currentpage, totalpages }) => currentpage === totalpages && 'opacity: 0; pointer-events: none;'};
 `
 export const PaginationText = styled.div`
   font-size: 14px;
