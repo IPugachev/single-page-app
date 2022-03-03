@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Button from '../UI/Button'
 import RadioButton from '../UI/RadioButton'
 import ToggleButton from '../UI/ToggleButton'
@@ -6,7 +6,7 @@ import Input from '../UI/Input'
 import * as S from './style.jsx'
 import Flex from '../../styles/Flex'
 import { useDispatch } from 'react-redux'
-import { registrationUser } from '../../store/filter/action'
+import { changeValues, registrationUser } from '../../store/filter/action'
 
 const RegistrationForm = (props) => {
   const [userNameWarning, setUserNameWarning] = useState(0)
@@ -23,7 +23,6 @@ const RegistrationForm = (props) => {
   const userPasswordRef = useRef()
   const userToggleRef = useRef()
   const radioRefs = [userRadioMaleRef, userRadioFemaleRef]
-  // { isAuth: false, name: '', lastName: '', birthDate: '', gender: '', email: '', password: '', ads: false }
   const dispatch = useDispatch()
 
   const submit = (event) => {
@@ -32,12 +31,6 @@ const RegistrationForm = (props) => {
     setUserLastNameWarning(userLastNameRef.current.value === '' ? 1 : 0)
     setUserDateWarning(userDateRef.current.value === '' ? 1 : 0)
     setUserPasswordWarning(userPasswordRef.current.value === '' ? 1 : 0)
-
-    console.log(userNameRef.current.value)
-    console.log(userLastNameRef.current.value)
-    console.log(userDateRef.current.value)
-    console.log(userPasswordRef.current.value)
-    console.log(userEmailRef.current.value)
 
     if (
       userNameRef.current.value !== '' &&
@@ -55,15 +48,15 @@ const RegistrationForm = (props) => {
         ads: userToggleRef.current.checked,
       }
       dispatch(registrationUser(userData))
+      dispatch(changeValues('isAuth', true))
+      dispatch(changeValues('hasAccount', true))
+      dispatch(changeValues('name', userNameRef.current.value))
+      dispatch(changeValues('lastName', userLastNameRef.current.value))
     }
   }
-  // РЕФ НЕ ИЗМЕНЯЕТСЯ?
-  // useEffect(() => {
-  //   setUserNameWarning(userNameRef.current.value === '')
-  // }, [userNameRef])
 
   return (
-    <S.Form onSubmit={(event) => submit(event)}>
+    <S.Form>
       <S.Title>Регистрация аккаунта</S.Title>
       <Input ref={userNameRef} placeholder='Имя' margin='20px 0 0 0' warning={userNameWarning} />
       <Input ref={userLastNameRef} placeholder='Фамилия' margin='10px 0' warning={userLastNameWarning} />

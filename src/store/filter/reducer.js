@@ -3,6 +3,8 @@ import { filterActions } from './action'
 export const initialState = {
   hasAccount: false,
   isAuth: false,
+  name: '',
+  lastName: '',
   entryDate: null,
   endDate: null,
   roomNumber: 888,

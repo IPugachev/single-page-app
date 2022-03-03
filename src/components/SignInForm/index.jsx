@@ -6,10 +6,16 @@ import Flex from '../../styles/Flex'
 
 const SignInForm = (props) => {
   const submit = (event) => {
-    console.log('submit')
     event.preventDefault()
   }
-  return (
+  return props.isAuth ? (
+    <S.SuccessedRegistration>
+      <h4>Вы успешно зарегестрированы!</h4>
+      <S.ButtonLink to='/search'>
+        <Button buttonStyle='long' text='подобрать номер' arrow={true} margin='30px 0 0 0' />
+      </S.ButtonLink>
+    </S.SuccessedRegistration>
+  ) : (
     <S.Form onSubmit={(e) => submit(e)}>
       <S.Title>Войти</S.Title>
       <Input placeholder='Email' />
