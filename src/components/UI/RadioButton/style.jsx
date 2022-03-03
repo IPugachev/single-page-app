@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 import RadioBtn from '../../../assets/icons/radio-checked.svg'
 
-export const Radio = styled.form`
+export const Radio = styled.div`
   margin: ${({ margin }) => margin || '0'};
   width: fit-content;
 `
-export const Title = styled.div`
+export const Title = styled.h4`
   font-size: 12px;
   line-height: 15px;
   color: ${({ theme }) => theme.colors.darkShade100};

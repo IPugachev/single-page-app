@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { ReactComponent as ArrowDown } from '../../../assets/icons/arrow-down.svg'
 import ArrowForwardPath from '../../../assets/icons/arrow-forward-email.svg'
+import { ReactComponent as WarningIcon } from '../../../assets/icons/warning.svg'
 
 export const Input = styled.div`
   width: ${({ width }) => width || '320px'};
@@ -23,7 +24,7 @@ export const Wrapper = styled.div`
 export const Field = styled.input`
   width: 100%;
   color: ${({ input, theme }) => (input === 'date' ? theme.colors.darkShade75 : theme.colors.darkShade25)};
-  border: 1px solid rgba(31, 32, 65, 0.25);
+  border: ${({ warning }) => (warning === 1 && '1px solid #c92d2c') || '1px solid rgba(31, 32, 65, 0.25)'};
   border-radius: 4px;
   padding: 12px 15px;
   font-size: 14px;
@@ -48,6 +49,14 @@ export const Arrow = styled(ArrowDown)`
   top: 0;
   cursor: pointer;
   display: ${({ input }) => (input === 'date' ? 'block' : 'none')};
+`
+export const Warning = styled(WarningIcon)`
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  right: 10px;
+  top: 10px;
+  display: ${({ warning }) => (warning === 1 ? 'block' : 'none')};
 `
 export const ArrowEmail = styled.div`
   position: absolute;

@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export const CardsField = styled.div`
-  width: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +15,8 @@ export const Title = styled.h3`
   align-self: flex-start;
 `
 export const Wrapper = styled.div`
-  min-height: 851px;
+  height: 1150px;
+  width: 834px;
 `
 
 export const CardsBox = styled.div`
@@ -30,4 +30,9 @@ export const CardsBox = styled.div`
 export const CardLink = styled(Link)`
   text-decoration: none;
   height: fit-content;
+`
+export const SearchError = styled.p`
+  font-size: 18px;
+  line-height: 24px;
+  color: ${({ theme }) => theme.colors.darkShade75};
 `

@@ -5,16 +5,12 @@ import Button from '../UI/Button'
 import { ReactComponent as Info } from '../../assets/icons/info.svg'
 import { splitNumbers } from '../utils/splitNumbers'
 import * as S from './style'
-import { initialValues } from '../Sidebar/data'
-import { useSelector } from 'react-redux'
 
-const BookingForm = () => {
-  const dropdownInitialValues = useSelector((state) => state.filter)
-
-  const luxury = true
-  const number = 888
-  const price = 9990
-  const time = 4
+const BookingForm = ({ initialValues }) => {
+  const luxury = initialValues.isLuxury !== undefined ? initialValues.isLuxury : true
+  const number = initialValues.roomNumber
+  const price = initialValues.price !== undefined ? initialValues.price : 9999
+  const days = initialValues.endDate !== null ? (initialValues.endDate - initialValues.entryDate) / 86400000 : 1
 
   return (
     <S.Form>
@@ -28,34 +24,41 @@ const BookingForm = () => {
           <span>{splitNumbers(price)}₽</span> в сутки
         </S.Subtitle>
       </S.HeaderSection>
-      <Calendar filter={false} start={'прибытие'} end={'вызед'} />
-      <Dropdown initialValues={dropdownInitialValues.guests} type='guests' title='гости' margin='20px 0' />
+      <Calendar
+        filter={false}
+        start={'прибытие'}
+        end={'вызед'}
+        initialValueEntryDate={initialValues.entryDate}
+        initialValueEndDate={initialValues.endDate}
+      />
+      <Dropdown initialValues={initialValues.guests} type='guests' title='гости' margin='20px 0' />
       <S.PriceInfo>
         <S.Item>
           <span>
-            {splitNumbers(price)}₽ х {time} суток
+            {splitNumbers(price)}₽ х {days} суток
           </span>
-          <span>{splitNumbers(price * time)}₽</span>
+          <span>{splitNumbers(price * days)}₽</span>
         </S.Item>
         <S.Item>
           <span>
-            Сбор за услуги: скидка 2179₽ <Info style={{ marginLeft: '5px' }} />
+            Сбор за услуги:
+            <Info style={{ marginLeft: '5px' }} />
           </span>
           <span>0₽</span>
         </S.Item>
         <S.Item>
           <span>
-            Сбор за дополнительные услуги <Info style={{ marginLeft: '5px' }} />
+            Сбор за дополнительные услуги: <Info style={{ marginLeft: '5px' }} />
           </span>
-          <span>300₽</span>
+          <span>0₽</span>
         </S.Item>
       </S.PriceInfo>
       <S.TotalPrice>
         <span>Итого</span>
         <S.Border />
-        <span>38 081₽</span>
+        <span>{splitNumbers(price * days)}₽</span>
       </S.TotalPrice>
-      <Button type='long' text='забронировать' arrow={true} />
+      <Button buttonStyle='long' text='забронировать' arrow={true} />
     </S.Form>
   )
 }

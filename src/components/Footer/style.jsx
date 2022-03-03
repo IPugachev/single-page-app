@@ -3,10 +3,16 @@ import styled from 'styled-components'
 export const Footer = styled.footer`
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: #ffffff;
   width: 100%;
-  min-width: 1200px;
   box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.05);
+`
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 1440px;
+  min-width: 1200px;
 `
 
 export const InfoBox = styled.nav`
@@ -16,11 +22,18 @@ export const InfoBox = styled.nav`
 `
 export const UnderBox = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+
+  width: 100%;
   border-top: 1px solid rgba(31, 32, 65, 0.1);
   height: 70px;
   padding: 0 140px;
 `
+export const UnderBoxWrapper = styled(Wrapper)`
+  flex-direction: row;
+  justify-content: space-between;
+`
+
 export const FooterItem = styled.div`
   display: flex;
   flex-direction: column;

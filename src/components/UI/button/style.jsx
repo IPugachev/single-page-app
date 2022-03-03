@@ -2,10 +2,10 @@ import styled, { css } from 'styled-components'
 import { ReactComponent as ArrowForward } from '../../../assets/icons/arrow-forward-pagination.svg'
 
 export const Button = styled.button`
-  background: ${({ type, theme }) => (type === 'white' ? '#ffffff' : theme.background.purple)};
+  background: ${({ buttonStyle, theme }) => (buttonStyle === 'white' ? '#ffffff' : theme.background.purple)};
   position: relative;
   border-radius: 22px;
-  ${({ type }) => (type === 'long' ? 'width: 320px' : 'width: 99px')};
+  ${({ buttonStyle }) => (buttonStyle === 'long' ? 'width: 320px' : 'width: 99px')};
   ${({ width }) => 'width: ' + width || ''};
   height: 44px;
   display: flex;
@@ -17,20 +17,20 @@ export const Button = styled.button`
   border: none;
   cursor: pointer;
   &:hover {
-    ${({ type }) => (type !== 'white' ? 'opacity:0.5' : 'border: 2px solid rgba(188, 156, 255, 0.5)')}
+    ${({ buttonStyle }) => (buttonStyle !== 'white' ? 'opacity:0.5' : 'border: 2px solid rgba(188, 156, 255, 0.5)')}
   }
-  ${({ type, theme }) => type === 'white' && 'border: 2px solid ' + theme.colors.purple}
+  ${({ buttonStyle, theme }) => buttonStyle === 'white' && 'border: 2px solid ' + theme.colors.purple}
 `
 export const ButtonText = styled.p`
   font-size: 12px;
   line-height: 15px;
   text-transform: uppercase;
-  ${({ type }) => type !== 'white' && 'color: #ffffff'};
+  ${({ buttonStyle }) => buttonStyle !== 'white' && 'color: #ffffff'};
   font-style: normal;
   font-weight: bold;
 
-  ${({ type }) =>
-    type === 'white' &&
+  ${({ buttonStyle }) =>
+    buttonStyle === 'white' &&
     css`
       background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
       background-clip: text;

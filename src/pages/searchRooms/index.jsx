@@ -4,15 +4,15 @@ import CardsField from '../../components/CardsField'
 import Sidebar from '../../components/Sidebar'
 
 const Body = styled.div`
-  max-width: 100vw;
-  min-width: 1200px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
   border-bottom: 1px solid rgba(31, 32, 65, 0.25);
 `
 const Main = styled.div`
   width: 100%;
+  /* max-width: 1440px;
+  min-width: 1200px; */
   padding: 30px 140px 70px;
   display: flex;
   justify-content: center;

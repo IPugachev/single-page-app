@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Body = styled.div`
-  max-width: 100vw;
+  width: 100%;
   min-width: 1200px;
   display: flex;
   flex-direction: column;
@@ -10,6 +10,7 @@ export const Body = styled.div`
 export const Main = styled.div`
   position: relative;
   width: 100%;
+  min-height: 700px;
 `
 export const Registration = styled.div`
   position: absolute;
@@ -20,4 +21,5 @@ export const Registration = styled.div`
 export const BackgroundImg = styled.img`
   width: 100%;
   object-fit: cover;
+  min-height: 700px;
 `

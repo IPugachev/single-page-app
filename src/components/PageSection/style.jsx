@@ -36,9 +36,19 @@ export const RateDiagram = styled.div`
 export const CommentBlock = styled.div`
   display: flex;
   flex-direction: column;
+  margin-right: 20px;
   & > :not(:first-child) {
     margin-top: 23px;
-    margin-right: 20px;
+  }
+`
+export const BlockTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  & span {
+    font-size: 14px;
+    line-height: 14px;
+    color: ${({ theme }) => theme.colors.darkShade50};
   }
 `
 export const NoteBlock = styled.div`

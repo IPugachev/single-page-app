@@ -32,6 +32,8 @@ const bulletListValues = [
   'Время прибытия — после 13:00, а выезд до 12:00',
 ]
 
+const reviews = [0, 1]
+
 const PageSection = () => {
   return (
     <S.PageSection>
@@ -51,9 +53,13 @@ const PageSection = () => {
       </S.UpperBlock>
 
       <S.CommentBlock>
-        <h5>Отзывы посетителей номера</h5>
-        <Comment />
-        <Comment />
+        <S.BlockTitle>
+          <h5>Отзывы посетителей номера</h5>
+          <span>{reviews.length} отзыва</span>
+        </S.BlockTitle>
+        {reviews.map((item) => (
+          <Comment index={item} key={item} />
+        ))}
       </S.CommentBlock>
       <S.NoteBlock>
         <BulletList title='Правила' values={bulletListValues} />

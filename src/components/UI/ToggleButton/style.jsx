@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Toggle = styled.form`
+export const Toggle = styled.div`
   margin: ${({ margin }) => margin || '0'};
   width: fit-content;
 `
@@ -14,15 +14,16 @@ export const Title = styled.div`
   margin-bottom: 16px;
   display: ${({ title }) => !title && 'none'};
 `
-export const Wrapper = styled.div``
-export const Label = styled.label`
-  & + span {
+export const Wrapper = styled.div`
+  & span {
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
     color: ${({ theme }) => theme.colors.darkShade50};
   }
+`
+export const Label = styled.label`
   margin-right: 10px;
   position: relative;
   display: inline-block;

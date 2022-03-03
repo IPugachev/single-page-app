@@ -1,13 +1,7 @@
 import React from 'react'
 import * as S from './style'
 
-// const reviews = {
-//   great: 10,
-//   good: 5,
-//   alright: 5,
-//   bad: 1,
-// }
-const reviews = [100, 100, 200, 1]
+const reviews = [100, 170, 150, 1]
 const sum = reviews[0] + reviews[1] + reviews[2] + reviews[3]
 
 const Diagram = () => {

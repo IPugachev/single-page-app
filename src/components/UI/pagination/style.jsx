@@ -2,11 +2,42 @@ import styled, { css } from 'styled-components'
 import { ReactComponent as ArrowBack } from '../../../assets/icons/arrow-back-pagination.svg'
 import { ReactComponent as ArrowForward } from '../../../assets/icons/arrow-forward-pagination.svg'
 
+const Arrow = css`
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 22px;
+  cursor: pointer;
+  background: ${({ theme }) => theme.background.green};
+`
+
 export const PaginationContainer = styled.div`
   margin-top: 40px;
   width: fit-content;
 `
 export const PagesBox = styled.div`
+  position: relative;
+  width: ${({ maxPages }) => 40 * (maxPages + 2)}px;
+  display: flex;
+  justify-content: center;
+`
+export const ArrowPageBack = styled(ArrowBack)`
+  ${Arrow}
+  left:0;
+  top: 0;
+  ${({ currentpage }) => currentpage === 0 && 'opacity: 0; pointer-events: none;'};
+`
+export const ArrowPageForward = styled(ArrowForward)`
+  ${Arrow}
+  right:0;
+  top: 0;
+  ${({ currentpage, totalpages }) => currentpage === totalpages && 'opacity: 0; pointer-events: none;'};
+`
+export const Pages = styled.div`
   display: flex;
   justify-content: center;
 `
@@ -47,30 +78,6 @@ export const Page = styled.div`
     `}
   
   user-select: none;
-`
-export const ArrowPageBack = styled(ArrowBack)`
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-radius: 22px;
-  background: ${({ theme }) => theme.background.green};
-  cursor: pointer;
-  ${({ currentpage }) => currentpage === 0 && 'opacity: 0; pointer-events: none;'};
-`
-export const ArrowPageForward = styled(ArrowForward)`
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  border-radius: 22px;
-  background: ${({ theme }) => theme.background.green};
-  cursor: pointer;
-  ${({ currentpage, totalpages }) => currentpage === totalpages && 'opacity: 0; pointer-events: none;'};
 `
 export const PaginationText = styled.div`
   font-size: 14px;

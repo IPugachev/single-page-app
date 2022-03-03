@@ -1,29 +1,40 @@
 import React from 'react'
 import LikeButton from '../UI/LikeButton'
-import avatarPath from '../../assets/avatars/wO7LPEgT4rI.jpg'
+import avatar1 from '../../assets/avatars/avatar1.jpg'
+import avatar2 from '../../assets/avatars/avatar2.jpg'
 import * as S from './style'
 
-const commentInfo = {
-  name: 'Геннадий Цаль',
-  date: '1 минуту назад',
-}
+const commentInfo = [
+  {
+    name: 'Геннадий Цаль',
+    date: '6 дней назад назад',
+    avatar: avatar1,
+  },
+  {
+    name: 'Патрисия Стёклышкова',
+    date: 'Месяц назад',
+    avatar: avatar2,
+  },
+]
 
-const commentText =
-  'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.'
+const commentText = [
+  'Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.',
+  'Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент',
+]
 
-const Comment = (props) => {
+const Comment = ({ index }) => {
   return (
     <S.Container>
       <S.UserBox>
-        <S.UserImage src={avatarPath} alt='avatar' />
+        <S.UserImage src={commentInfo[index].avatar} alt='avatar' />
         <LikeButton />
       </S.UserBox>
       <S.TextBlock>
         <S.UserStatus>
-          <p>{commentInfo.name}</p>
-          <p>{commentInfo.date}</p>
+          <p>{commentInfo[index].name}</p>
+          <p>{commentInfo[index].date}</p>
         </S.UserStatus>
-        <p>{commentText}</p>
+        <p>{commentText[index]}</p>
       </S.TextBlock>
     </S.Container>
   )

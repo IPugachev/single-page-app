@@ -6,14 +6,20 @@ import * as S from './style.jsx'
 import { useSelector } from 'react-redux'
 
 const SearchForm = ({ title = 'Найдём номера под ваши пожелания' }) => {
-  const dropdownInitialValues = useSelector((state) => state.filter)
+  const updatingInitialValues = useSelector((state) => state.filter)
   return (
     <S.Form>
       <S.Title>{title}</S.Title>
-      <Calendar filter={false} start={'прибытие'} end={'вызед'} />
-      <Dropdown initialValues={dropdownInitialValues.guests} type='guests' title='гости' margin='20px 0 0' />
+      <Calendar
+        filter={false}
+        start={'прибытие'}
+        end={'вызед'}
+        initialValueEntryDate={updatingInitialValues.entryDate}
+        initialValueEndDate={updatingInitialValues.endDate}
+      />
+      <Dropdown initialValues={updatingInitialValues.guests} type='guests' title='гости' margin='20px 0 0' />
       <S.ButtonLink to='/search'>
-        <Button type='long' text='подобрать номер' arrow={true} margin='30px 0 0 0' />
+        <Button buttonStyle='long' text='подобрать номер' arrow={true} margin='30px 0 0 0' />
       </S.ButtonLink>
     </S.Form>
   )

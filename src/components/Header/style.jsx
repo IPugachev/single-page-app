@@ -5,12 +5,18 @@ export const Header = styled.header`
   padding: 0 140px;
   height: 70px;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.05);
+`
+export const Wrapper = styled.div`
+  max-width: 1440px;
   min-width: 1200px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #ffffff;
-  box-shadow: 0px 10px 20px rgba(31, 32, 65, 0.05);
 `
 export const LogoBox = styled.div`
   display: flex;

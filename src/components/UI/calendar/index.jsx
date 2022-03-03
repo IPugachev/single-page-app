@@ -34,10 +34,10 @@ const months = [
   'Декабрь',
 ]
 
-const Calendar = ({ start, end, date }) => {
+const Calendar = ({ start, end, date, initialValueEntryDate, initialValueEndDate }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date())
-  const [selectedStartDate, setSelectedStartDate] = useState(null)
-  const [selectedEndDate, setSelectedEndDate] = useState(null)
+  const [selectedStartDate, setSelectedStartDate] = useState(initialValueEntryDate)
+  const [selectedEndDate, setSelectedEndDate] = useState(initialValueEndDate)
   const [fromStr, setFromStr] = useState('')
   const [untilStr, setUntilStr] = useState('')
   const [visible, setVisible] = useState(false)
@@ -50,7 +50,7 @@ const Calendar = ({ start, end, date }) => {
   const dispatch = useDispatch()
   useClickOutside(clickRef, () => setVisible(false))
 
-  // console.log((selectedEndDate - selectedStartDate) / 86400000) для счета суток
+  // console.log((selectedEndDate - selectedStartDate) / 86400000)
 
   const renderHeader = () => {
     const dateFormat = 'yyyy'
@@ -145,24 +145,32 @@ const Calendar = ({ start, end, date }) => {
         0,
         untilStr.length - 1
       )}`)
-  }, [fromStr, untilStr, date])
+    if (initialValueEntryDate !== null && initialValueEndDate !== null) {
+      date !== 'filter'
+        ? (fromRef.current.value = format(initialValueEntryDate, 'd.MM.yyyy'))
+        : setFromStr(format(initialValueEntryDate, 'd MMM', { locale: ru }))
+      date !== 'filter'
+        ? (untilRef.current.value = format(initialValueEndDate, 'd.MM.yyyy'))
+        : setUntilStr(' - ' + format(initialValueEndDate, 'd MMM', { locale: ru }))
+    }
+  }, [fromStr, untilStr, date, initialValueEntryDate, initialValueEndDate])
 
   const onDateClick = (day) => {
     if (selectedStartDate === null) {
       setSelectedStartDate(day)
-      dispatch(changeValues('entryDate', format(day, 'd MM y')))
+      dispatch(changeValues('entryDate', day))
       date !== 'filter'
         ? (fromRef.current.value = format(day, 'd.MM.yyyy'))
         : setFromStr(format(day, 'd MMM', { locale: ru }))
     } else if (day < selectedStartDate) {
       setSelectedStartDate(day)
-      dispatch(changeValues('entryDate', format(day, 'd MM y')))
+      dispatch(changeValues('entryDate', day))
       date !== 'filter'
         ? (fromRef.current.value = format(day, 'd.MM.yyyy'))
         : setFromStr(format(day, 'd MMM', { locale: ru }))
     } else {
       setSelectedEndDate(day)
-      dispatch(changeValues('endDate', format(day, 'd MM y')))
+      dispatch(changeValues('endDate', day))
       date !== 'filter'
         ? (untilRef.current.value = format(day, 'd.MM.yyyy'))
         : setUntilStr(' - ' + format(day, 'd MMM', { locale: ru }))
@@ -180,6 +188,8 @@ const Calendar = ({ start, end, date }) => {
   const handleInputClear = () => {
     setSelectedStartDate(null)
     setSelectedEndDate(null)
+    dispatch(changeValues('entryDate', null))
+    dispatch(changeValues('endDate', null))
     if (date !== 'filter') {
       fromRef.current.value = ''
       untilRef.current.value = ''

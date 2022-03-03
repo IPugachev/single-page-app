@@ -1,21 +1,23 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Background from '../../assets/backgrounds/registration.png'
 import RegistrationForm from '../../components/RegistrationForm'
 import SignInForm from '../../components/SignInForm'
+import { changeValues } from '../../store/filter/action'
 import * as S from './style'
 
-// import * as S from './style.jsx'
-
 const RegistrationPage = () => {
-  const [signInClick, setSignInClick] = useState(false)
-  const signInClicked = () => {
-    setSignInClick(!signInClick)
+  const hasAccount = useSelector((state) => state.filter.hasAccount)
+  const dispatch = useDispatch()
+  const changeAccount = () => {
+    hasAccount ? dispatch(changeValues('hasAccount', false)) : dispatch(changeValues('hasAccount', true))
   }
+
   return (
     <S.Body>
       <S.Main>
         <S.Registration>
-          {!signInClick ? <RegistrationForm onClick={signInClicked} /> : <SignInForm onClick={signInClicked} />}
+          {!hasAccount ? <RegistrationForm handler={changeAccount} /> : <SignInForm handler={changeAccount} />}
         </S.Registration>
         <S.BackgroundImg src={Background} alt='background' />
       </S.Main>
