@@ -9,7 +9,7 @@ const Toggle = React.forwardRef((props, ref) => {
       </S.Title>
       <S.Wrapper>
         <S.Label>
-          <S.Input ref={ref} type='checkbox' />
+          <S.Input {...props} ref={ref} type='checkbox' />
           <S.Slider></S.Slider>
         </S.Label>
         <span>Получать спецпредложения</span>

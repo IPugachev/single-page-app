@@ -12,7 +12,7 @@ const SignInForm = (props) => {
     <S.SuccessedRegistration>
       <h4>Вы успешно зарегестрированы!</h4>
       <S.ButtonLink to='/search'>
-        <Button buttonStyle='long' text='подобрать номер' arrow={true} margin='30px 0 0 0' />
+        <Button buttonStyle='long' text='подобрать номер' hasArrow={true} margin='30px 0 0 0' />
       </S.ButtonLink>
     </S.SuccessedRegistration>
   ) : (
@@ -20,7 +20,7 @@ const SignInForm = (props) => {
       <S.Title>Войти</S.Title>
       <Input placeholder='Email' />
       <Input placeholder='Пароль' margin='10px 0' />
-      <Button buttonStyle='long' text='войти' arrow={true} margin='10px 0 30px' />
+      <Button buttonStyle='long' text='войти' hasArrow={true} margin='10px 0 30px' />
       <Flex justify='space-between' align='center'>
         <S.Underline>Нет аккаунта на Toxin?</S.Underline>
         <Button buttonStyle='white' text='создать' onClick={props.handler} />

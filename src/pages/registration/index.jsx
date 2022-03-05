@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import Background from '../../assets/backgrounds/registration.png'
 import RegistrationForm from '../../components/RegistrationForm'
 import SignInForm from '../../components/SignInForm'
-import { changeValues } from '../../store/filter/action'
+import { setUserStatus } from '../../store/profile/action'
 import * as S from './style'
 
 const RegistrationPage = () => {
-  const hasAccount = useSelector((state) => state.filter.hasAccount)
-  const isAuth = useSelector((state) => state.filter.isAuth)
+  const hasAccount = useSelector((state) => state.profile.hasAccount)
+  const isAuth = useSelector((state) => state.profile.isAuth)
   const dispatch = useDispatch()
   const changeAccount = () => {
-    hasAccount ? dispatch(changeValues('hasAccount', false)) : dispatch(changeValues('hasAccount', true))
+    hasAccount ? dispatch(setUserStatus('hasAccount', false)) : dispatch(setUserStatus('hasAccount', true))
   }
 
   return (

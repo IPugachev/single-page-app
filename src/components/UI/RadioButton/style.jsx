@@ -2,8 +2,7 @@ import styled from 'styled-components'
 import RadioBtn from '../../../assets/icons/radio-checked.svg'
 
 export const Radio = styled.div`
-  margin: ${({ margin }) => margin || '0'};
-  width: fit-content;
+  position: relative;
 `
 export const Title = styled.h4`
   font-size: 12px;
@@ -15,9 +14,7 @@ export const Title = styled.h4`
   margin-bottom: 16px;
   display: ${({ title }) => !title && 'none'};
 `
-export const Wrapper = styled.div`
-  position: relative;
-`
+
 export const Label = styled.label`
   margin-right: 20px;
   display: inline-flex;

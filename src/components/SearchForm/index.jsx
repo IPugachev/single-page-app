@@ -4,6 +4,7 @@ import Calendar from '../UI/Calendar'
 import Dropdown from '../UI/Dropdown'
 import * as S from './style.jsx'
 import { useSelector } from 'react-redux'
+import { Outlet } from 'react-router-dom'
 
 const SearchForm = ({ title = 'Найдём номера под ваши пожелания' }) => {
   const updatingInitialValues = useSelector((state) => state.filter)
@@ -18,8 +19,8 @@ const SearchForm = ({ title = 'Найдём номера под ваши пож�
         initialValueEndDate={updatingInitialValues.endDate}
       />
       <Dropdown initialValues={updatingInitialValues.guests} type='guests' title='гости' margin='20px 0 0' />
-      <S.ButtonLink to='/search'>
-        <Button buttonStyle='long' text='подобрать номер' arrow={true} margin='30px 0 0 0' />
+      <S.ButtonLink to='/study-project-toxin/search'>
+        <Button buttonStyle='long' text='подобрать номер' hasArrow={true} margin='30px 0 0 0' />
       </S.ButtonLink>
     </S.Form>
   )

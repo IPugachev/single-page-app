@@ -58,7 +58,7 @@ const BookingForm = ({ initialValues }) => {
         <S.Border />
         <span>{splitNumbers(price * days)}₽</span>
       </S.TotalPrice>
-      <Button buttonStyle='long' text='забронировать' arrow={true} />
+      <Button buttonStyle='long' text='забронировать' hasArrow={true} />
     </S.Form>
   )
 }

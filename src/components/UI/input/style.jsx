@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { ReactComponent as ArrowDown } from '../../../assets/icons/arrow-down.svg'
 import ArrowForwardPath from '../../../assets/icons/arrow-forward-email.svg'
-import { ReactComponent as WarningIcon } from '../../../assets/icons/warning.svg'
 
 export const Input = styled.div`
   width: ${({ width }) => width || '320px'};
@@ -20,20 +19,25 @@ export const Title = styled.div`
 export const Wrapper = styled.div`
   position: relative;
 `
+export const ErrorMessage = styled.p`
+  color: #c92d2c;
+  font-size: 12px;
+  line-height: 14px;
+`
 
-export const Field = styled.input`
+export const InputField = styled.input`
   width: 100%;
-  color: ${({ input, theme }) => (input === 'date' ? theme.colors.darkShade75 : theme.colors.darkShade25)};
-  border: ${({ warning }) => (warning === 1 && '1px solid #c92d2c') || '1px solid rgba(31, 32, 65, 0.25)'};
+  color: ${({ styled, theme }) => (styled === 'date' ? theme.colors.darkShade75 : theme.colors.darkShade25)};
+  border: ${({ error }) => (error && '1px solid #c92d2c') || '1px solid rgba(31, 32, 65, 0.25)'};
   border-radius: 4px;
   padding: 12px 15px;
   font-size: 14px;
   line-height: 18px;
-  pointer-events: ${({ input }) => (input === 'date' ? 'none' : 'auto')};
+  pointer-events: ${({ styled }) => (styled === 'date' ? 'none' : 'auto')};
   &:focus {
     outline: none;
     color: ${({ theme }) => theme.colors.darkShade75};
-    border: 1px solid rgba(31, 32, 65, 0.5);
+    border: ${({ error }) => (error && '1px solid #c92d2c') || '1px solid rgba(31, 32, 65, 0.5)'};
   }
   &:hover {
     color: ${({ theme }) => theme.colors.darkShade75};
@@ -42,21 +46,16 @@ export const Field = styled.input`
   &::placeholder {
     opacity: 0.75;
   }
+  &:focus + ${ErrorMessage} {
+    display: none;
+  }
 `
 export const Arrow = styled(ArrowDown)`
   position: absolute;
   right: 0;
   top: 0;
   cursor: pointer;
-  display: ${({ input }) => (input === 'date' ? 'block' : 'none')};
-`
-export const Warning = styled(WarningIcon)`
-  position: absolute;
-  height: 24px;
-  width: 24px;
-  right: 10px;
-  top: 10px;
-  display: ${({ warning }) => (warning === 1 ? 'block' : 'none')};
+  display: ${({ styled }) => (styled === 'date' ? 'block' : 'none')};
 `
 export const ArrowEmail = styled.div`
   position: absolute;
@@ -66,5 +65,5 @@ export const ArrowEmail = styled.div`
   top: 0;
   background-image: url(${ArrowForwardPath});
   cursor: pointer;
-  display: ${({ input }) => (input === 'email' ? 'block' : 'none')};
+  display: ${({ styled }) => (styled === 'email' ? 'block' : 'none')};
 `

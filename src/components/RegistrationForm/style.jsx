@@ -17,6 +17,10 @@ export const Title = styled.h4`
   line-height: 29px;
   color: ${({ theme }) => theme.colors.darkShade100};
 `
+export const Wrapper = styled.div`
+  display: flex;
+  width: fit-content;
+`
 export const Underline = styled.p`
   font-size: 14px;
   line-height: 18px;

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useCallback } from 'react'
 import Button from '../UI/Button'
 import RadioButton from '../UI/RadioButton'
 import ToggleButton from '../UI/ToggleButton'
@@ -6,73 +6,90 @@ import Input from '../UI/Input'
 import * as S from './style.jsx'
 import Flex from '../../styles/Flex'
 import { useDispatch } from 'react-redux'
-import { changeValues, registrationUser } from '../../store/filter/action'
+import { registrationUser, setUserStatus } from '../../store/profile/action'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
+
+const useYupValidationResolver = (validationSchema) =>
+  useCallback(
+    async (data) => {
+      try {
+        const values = await validationSchema.validate(data, {
+          abortEarly: false,
+        })
+
+        return {
+          values,
+          errors: {},
+        }
+      } catch (errors) {
+        return {
+          values: {},
+          errors: errors.inner.reduce(
+            (allErrors, currentError) => ({
+              ...allErrors,
+              [currentError.path]: {
+                type: currentError.type ?? 'validation',
+                message: currentError.message,
+              },
+            }),
+            {}
+          ),
+        }
+      }
+    },
+    [validationSchema]
+  )
+
+const validationSchema = yup.object({
+  firstName: yup.string().required('Обязательное поле*'),
+  lastName: yup.string().required('Обязательное поле*'),
+  gender: yup.string().nullable(),
+  birthDate: yup.string().required('Обязательное поле*'),
+  email: yup.string().email('Неверный формат почты'),
+  password: yup.string().required('Обязательное поле*'),
+  adPermisson: yup.boolean(),
+})
 
 const RegistrationForm = (props) => {
-  const [userNameWarning, setUserNameWarning] = useState(0)
-  const [userLastNameWarning, setUserLastNameWarning] = useState(0)
-  const [userDateWarning, setUserDateWarning] = useState(0)
-  const [userPasswordWarning, setUserPasswordWarning] = useState(0)
-
-  const userNameRef = useRef()
-  const userLastNameRef = useRef()
-  const userDateRef = useRef()
-  const userRadioMaleRef = useRef()
-  const userRadioFemaleRef = useRef()
-  const userEmailRef = useRef()
-  const userPasswordRef = useRef()
-  const userToggleRef = useRef()
-  const radioRefs = [userRadioMaleRef, userRadioFemaleRef]
   const dispatch = useDispatch()
-
-  const submit = (event) => {
-    event.preventDefault()
-    setUserNameWarning(userNameRef.current.value === '' ? 1 : 0)
-    setUserLastNameWarning(userLastNameRef.current.value === '' ? 1 : 0)
-    setUserDateWarning(userDateRef.current.value === '' ? 1 : 0)
-    setUserPasswordWarning(userPasswordRef.current.value === '' ? 1 : 0)
-
-    if (
-      userNameRef.current.value !== '' &&
-      userLastNameRef.current.value !== '' &&
-      userDateRef.current.value !== '' &&
-      userPasswordRef.current.value !== ''
-    ) {
-      let userData = {
-        name: userNameRef.current.value,
-        lastName: userLastNameRef.current.value,
-        birthDate: userDateRef.current.value,
-        gender: userRadioMaleRef.current.checked ? 'male' : userRadioFemaleRef.current.checked ? 'female' : '',
-        email: userEmailRef.current.value,
-        password: userPasswordRef.current.value,
-        ads: userToggleRef.current.checked,
-      }
-      dispatch(registrationUser(userData))
-      dispatch(changeValues('isAuth', true))
-      dispatch(changeValues('hasAccount', true))
-      dispatch(changeValues('name', userNameRef.current.value))
-      dispatch(changeValues('lastName', userLastNameRef.current.value))
-    }
+  const resolver = useYupValidationResolver(validationSchema)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver })
+  const onSubmit = (data) => {
+    dispatch(registrationUser(data))
+    dispatch(setUserStatus('isAuth', true))
+    dispatch(setUserStatus('hasAccount', true))
+    dispatch(setUserStatus('firstName', data.firstName))
+    dispatch(setUserStatus('lastName', data.lastName))
+    console.log(data)
   }
+  const onError = () => console.log()
 
   return (
-    <S.Form>
+    <S.Form onSubmit={handleSubmit(onSubmit, onError)}>
       <S.Title>Регистрация аккаунта</S.Title>
-      <Input ref={userNameRef} placeholder='Имя' margin='20px 0 0 0' warning={userNameWarning} />
-      <Input ref={userLastNameRef} placeholder='Фамилия' margin='10px 0' warning={userLastNameWarning} />
-      <RadioButton ref={radioRefs} />
-      {/* сделать формат ввода даты после дня точка, после месяца ставится автоматом */}
+      <Input {...register('firstName')} placeholder='Имя' margin='20px 0 0 0' error={errors.firstName?.message} />
+      <Input {...register('lastName')} placeholder='Фамилия' margin='10px 0' error={errors.lastName?.message} />
+
+      <S.Wrapper>
+        <RadioButton {...register('gender')} value='male' label='Мужчина' />
+        <RadioButton {...register('gender')} value='female' label='Женщина' />
+      </S.Wrapper>
       <Input
-        ref={userDateRef}
+        {...register('birthDate')}
         title='дата рождения'
         placeholder='ДД.ММ.ГГГГ'
         margin='20px 0'
-        warning={userDateWarning}
+        error={errors.birthDate?.message}
       />
-      <Input ref={userEmailRef} title='данные для входа в сервис' placeholder='Email' />
-      <Input ref={userPasswordRef} placeholder='Пароль' margin='10px 0' warning={userPasswordWarning} />
-      <ToggleButton ref={userToggleRef} />
-      <Button buttonStyle='long' text='зарегестрироваться' arrow={true} margin='20px 0 30px' onClick={submit} />
+      <Input {...register('email')} title='данные для входа в сервис' placeholder='Email' />
+      <Input {...register('password')} placeholder='Пароль' margin='10px 0' error={errors.password?.message} />
+      <ToggleButton {...register('adPermisson')} />
+      <Button buttonStyle='long' text='зарегестрироваться' hasArrow='{true}' margin='20px 0 30px' />
       <Flex justify='space-between' align='center'>
         <S.Underline>Уже есть аккаунт на Toxin</S.Underline>
         <Button buttonStyle='white' text='войти' onClick={props.handler} />

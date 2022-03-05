@@ -1,10 +1,6 @@
 import { filterActions } from './action'
 
 export const initialState = {
-  hasAccount: false,
-  isAuth: false,
-  name: '',
-  lastName: '',
   entryDate: null,
   endDate: null,
   roomNumber: 888,
@@ -22,7 +18,6 @@ export const initialState = {
   babyBed: false,
   tv: false,
   shampoo: false,
-  user: '',
   guests: [
     { title: 'взрослые', count: 0, name: 'guestsAdults' },
     { title: 'дети', count: 0, name: 'guestsKids' },
@@ -41,8 +36,6 @@ export const filterReducer = (state = initialState, action) => {
       return { ...state, [action.payload.name]: action.payload.value }
     case filterActions.CHANGE_DROPDOWN_VALUES:
       return { ...state, [action.payload.type]: action.payload.changedValues }
-    case filterActions.REGISTRATION_USER:
-      return { ...state, user: [...state.user, action.payload.newUser] }
     default:
       return state
   }

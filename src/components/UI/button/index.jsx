@@ -1,11 +1,12 @@
 import React from 'react'
 import * as S from './style'
 
-const Button = ({ buttonType, buttonStyle, text, arrow, margin, width, onClick }) => {
+const Button = (props) => {
   return (
-    <S.Button type={buttonType} buttonStyle={buttonStyle} margin={margin} width={width} onClick={onClick}>
-      <S.ButtonText buttonStyle={buttonStyle}>{text}</S.ButtonText>
-      {arrow && <S.Arrow />}
+    // type={buttonType} buttonStyle={buttonStyle} margin={margin} width={width} onClick={onClick}
+    <S.Button {...props}>
+      <S.ButtonText buttonStyle={props.buttonStyle}>{props.text}</S.ButtonText>
+      {props.hasArrow && <S.Arrow />}
     </S.Button>
   )
 }
