@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/study-project-toxin/static/css/main.5e7973cf.css",
-    "main.js": "/study-project-toxin/static/js/main.90be110c.js",
+    "main.js": "/study-project-toxin/static/js/main.8637ae9d.js",
     "static/media/landing.png": "/study-project-toxin/static/media/landing.7b6bd7bea593a0d9bcf4.png",
     "static/media/registration.png": "/study-project-toxin/static/media/registration.9a3cf795c81aac43448c.png",
     "static/media/room1.png": "/study-project-toxin/static/media/room1.47878f203720b365db2a.png",
@@ -28,7 +28,6 @@
     "static/media/twitter.svg": "/study-project-toxin/static/media/twitter.5e9aef3602aec2c3349b4c9e64a6b0fb.svg",
     "static/media/like-btn-unclicked.svg": "/study-project-toxin/static/media/like-btn-unclicked.3de66af58c143e30725bd9039533d291.svg",
     "static/media/cosiness.svg": "/study-project-toxin/static/media/cosiness.06e9161d9263abbd06f8ebfbd29df4cc.svg",
-    "static/media/warning.svg": "/study-project-toxin/static/media/warning.0454c4f367ac491aa4ebd58a44bb4b3e.svg",
     "static/media/facebook.svg": "/study-project-toxin/static/media/facebook.df308a97eeb6b16903a57c767ca2cc9d.svg",
     "static/media/like-btn-clicked.svg": "/study-project-toxin/static/media/like-btn-clicked.f6d213d5e2d43d80ea58cb837e1d5b9d.svg",
     "static/media/convenience.svg": "/study-project-toxin/static/media/convenience.3e88484f1725afeacaa3790f0cac91b0.svg",
@@ -50,10 +49,10 @@
     "static/media/arrow-forward-pagination.svg": "/study-project-toxin/static/media/arrow-forward-pagination.497c0d138ee4b852d6a29bee6503313e.svg",
     "static/media/list-dot.svg": "/study-project-toxin/static/media/list-dot.2fe9326aa43902664b131ffd79802812.svg",
     "main.5e7973cf.css.map": "/study-project-toxin/static/css/main.5e7973cf.css.map",
-    "main.90be110c.js.map": "/study-project-toxin/static/js/main.90be110c.js.map"
+    "main.8637ae9d.js.map": "/study-project-toxin/static/js/main.8637ae9d.js.map"
   },
   "entrypoints": [
     "static/css/main.5e7973cf.css",
-    "static/js/main.90be110c.js"
+    "static/js/main.8637ae9d.js"
   ]
 }
