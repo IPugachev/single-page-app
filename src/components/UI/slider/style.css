@@ -65,7 +65,7 @@
 .thumb {
   pointer-events: none;
   position: absolute;
-  top: 2.5px;
+  top: 1px;
   height: 0;
   width: 100%;
   outline: none;

@@ -44,7 +44,7 @@ const Footer = () => {
           <S.FooterItem>
             <S.ItemTitle>Подписка</S.ItemTitle>
             <S.FooterText>Получайте специальные предложения и новости сервиса</S.FooterText>
-            <Input placeholder='Email' width='260px' input='email' />
+            <Input placeholder='Email' width='260px' styled='email' />
           </S.FooterItem>
         </S.InfoBox>
       </S.Wrapper>

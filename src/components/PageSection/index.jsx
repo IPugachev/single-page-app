@@ -32,9 +32,9 @@ const bulletListValues = [
   'Время прибытия — после 13:00, а выезд до 12:00',
 ]
 
-const reviews = [0, 1]
+const comments = [0, 1]
 
-const PageSection = () => {
+const PageSection = ({ reviews }) => {
   return (
     <S.PageSection>
       <S.UpperBlock>
@@ -48,16 +48,16 @@ const PageSection = () => {
         </S.Info>
         <S.RateDiagram>
           <h5>Впечатления от номера</h5>
-          <Diagram />
+          <Diagram reviews={reviews} />
         </S.RateDiagram>
       </S.UpperBlock>
 
       <S.CommentBlock>
         <S.BlockTitle>
           <h5>Отзывы посетителей номера</h5>
-          <span>{reviews.length} отзыва</span>
+          <span>{comments.length} отзыва</span>
         </S.BlockTitle>
-        {reviews.map((item) => (
+        {comments.map((item) => (
           <Comment index={item} key={item} />
         ))}
       </S.CommentBlock>

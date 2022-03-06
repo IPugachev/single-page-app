@@ -206,7 +206,7 @@ const Calendar = ({ start, end, date, initialValueEntryDate, initialValueEndDate
           <Input
             width='150px'
             placeholder='ДД.ММ.ГГГГ'
-            input='date'
+            styled='date'
             ref={fromRef}
             onClick={() => setVisible(!visible)}
             title={start}
@@ -216,7 +216,7 @@ const Calendar = ({ start, end, date, initialValueEntryDate, initialValueEndDate
           <Input
             width='150px'
             placeholder='ДД.ММ.ГГГГ'
-            input='date'
+            styled='date'
             ref={untilRef}
             onClick={() => setVisible(!visible)}
             title={end}
@@ -226,7 +226,7 @@ const Calendar = ({ start, end, date, initialValueEntryDate, initialValueEndDate
           <Input
             width='100%'
             placeholder='Выберите даты'
-            input='date'
+            styled='date'
             ref={fromRef}
             onClick={() => setVisible(!visible)}
             title={start}

@@ -7,7 +7,7 @@ const Input = React.forwardRef((props, ref) => {
       <S.Title title={props.title}>{props.title}</S.Title>
       <S.Wrapper>
         <S.InputField {...props} ref={ref} />
-        <S.ErrorMessage>{props.error}</S.ErrorMessage>
+        <S.ErrorMessage error={props.error}>{props.error}</S.ErrorMessage>
         <S.Arrow styled={props.styled} onClick={props.onClick} />
         <S.ArrowEmail styled={props.styled} onClick={props.onClick} />
       </S.Wrapper>

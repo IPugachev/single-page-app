@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeValues } from '../../store/filter/action'
+import { setCurrentRoom } from '../../store/room/action'
 import RoomCard from '../UI/Card'
 import Pagination from '../UI/Pagination'
 import { cardsData } from './data'
@@ -15,10 +15,8 @@ const CardsField = ({ title }) => {
   const dispatch = useDispatch()
   const state = useSelector((state) => state.filter)
   const filteredArray = filter(state, cardsData)
-  const setCurrentRoom = (room) => {
-    dispatch(changeValues('roomNumber', room.number))
-    dispatch(changeValues('price', room.price))
-    dispatch(changeValues('isLuxury', room.luxury))
+  const currentRoom = (room) => {
+    dispatch(setCurrentRoom(room))
   }
 
   return (
@@ -32,7 +30,10 @@ const CardsField = ({ title }) => {
                 item !== false &&
                 index > currentPage * 12 - 1 &&
                 index < currentPage * 12 + 12 && (
-                  <S.CardLink to={`/${item.link}`} key={index} onClick={() => setCurrentRoom(item)}>
+                  <S.CardLink
+                    to={`/study-project-toxin/room/${item.number}`}
+                    key={index}
+                    onClick={() => currentRoom(item)}>
                     <RoomCard initialValues={item} key={index} />
                   </S.CardLink>
                 )

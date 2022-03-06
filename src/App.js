@@ -23,7 +23,7 @@ function App() {
           <Route path='/study-project-toxin/' element={<LandingPage />} />
           <Route path='/study-project-toxin/search' element={<SearchRoomsPage />} />
           <Route path='/study-project-toxin/registration' element={<RegistrationPage />} />
-          <Route path='/study-project-toxin/room' element={<RoomPage />} />
+          <Route path='/study-project-toxin/room/:roomId' element={<RoomPage />} />
         </Routes>
         <Footer />
       </Body>

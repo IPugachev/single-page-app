@@ -71,3 +71,11 @@ export const Border = styled.div`
   flex-grow: 1;
   margin-bottom: 4px;
 `
+export const Success = styled.p`
+  width: 320px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 44px;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.darkShade100};
+`

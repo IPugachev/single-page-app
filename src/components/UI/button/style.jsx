@@ -34,6 +34,7 @@ export const ButtonText = styled.p`
     css`
       background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
       background-clip: text;
+      -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     `}
 `

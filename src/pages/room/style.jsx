@@ -6,7 +6,7 @@ export const Body = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
+  /* overflow: hidden; */
 `
 export const Main = styled.div`
   padding: 70px 140px;

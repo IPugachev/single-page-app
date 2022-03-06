@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://ipugachev.github.io/study-project-toxin/",
   "dependencies": {
+    "@hookform/resolvers": "^2.8.8",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",

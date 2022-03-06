@@ -23,6 +23,8 @@ export const ErrorMessage = styled.p`
   color: #c92d2c;
   font-size: 12px;
   line-height: 14px;
+  margin-top: 5px;
+  display: ${({ error }) => (error && 'block') || 'none'};
 `
 
 export const InputField = styled.input`

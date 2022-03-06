@@ -3,7 +3,6 @@ import { filterActions } from './action'
 export const initialState = {
   entryDate: null,
   endDate: null,
-  roomNumber: 888,
   from: 0,
   to: 150,
   smoking: false,

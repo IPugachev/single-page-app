@@ -1,14 +1,13 @@
 import React from 'react'
 import * as S from './style'
 
-const reviews = [100, 170, 150, 1]
-const sum = reviews[0] + reviews[1] + reviews[2] + reviews[3]
-
-const Diagram = () => {
-  let great = (reviews[0] / (reviews[0] + reviews[1] + reviews[2] + reviews[3])) * 360
-  let good = (reviews[1] / (reviews[0] + reviews[1] + reviews[2] + reviews[3])) * 360
-  let alright = (reviews[2] / (reviews[0] + reviews[1] + reviews[2] + reviews[3])) * 360
-  let bad = (reviews[3] / (reviews[0] + reviews[1] + reviews[2] + reviews[3])) * 360
+const Diagram = ({ reviews }) => {
+  const reviewsArray = [Math.floor(reviews / 3) + 2, Math.floor(reviews / 3) + 4, Math.floor(reviews / 3), 0]
+  const sum = reviewsArray[0] + reviewsArray[1] + reviewsArray[2] + reviewsArray[3]
+  let great = (reviewsArray[0] / (reviewsArray[0] + reviewsArray[1] + reviewsArray[2] + reviewsArray[3])) * 360
+  let good = (reviewsArray[1] / (reviewsArray[0] + reviewsArray[1] + reviewsArray[2] + reviewsArray[3])) * 360
+  let alright = (reviewsArray[2] / (reviewsArray[0] + reviewsArray[1] + reviewsArray[2] + reviewsArray[3])) * 360
+  let bad = (reviewsArray[3] / (reviewsArray[0] + reviewsArray[1] + reviewsArray[2] + reviewsArray[3])) * 360
 
   return (
     <S.Container>

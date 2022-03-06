@@ -5,13 +5,22 @@ import Button from '../UI/Button'
 import { ReactComponent as Info } from '../../assets/icons/info.svg'
 import { splitNumbers } from '../utils/splitNumbers'
 import * as S from './style'
+import { useDispatch, useSelector } from 'react-redux'
+import { bookRoom } from '../../store/room/action'
 
-const BookingForm = ({ initialValues }) => {
-  const luxury = initialValues.isLuxury !== undefined ? initialValues.isLuxury : true
-  const number = initialValues.roomNumber
-  const price = initialValues.price !== undefined ? initialValues.price : 9999
+const BookingForm = ({ currentRoom }) => {
+  const initialValues = useSelector((state) => state.filter)
+  const booked = useSelector((state) => state.room?.booked)
+  const dispatch = useDispatch()
+  const luxury = currentRoom.luxury
+  const number = currentRoom.number
+  const price = currentRoom.price
   const days = initialValues.endDate !== null ? (initialValues.endDate - initialValues.entryDate) / 86400000 : 1
-
+  const getRoom = (event) => {
+    dispatch(bookRoom())
+    event.preventDefault()
+    console.log(booked)
+  }
   return (
     <S.Form>
       <S.HeaderSection>
@@ -58,7 +67,11 @@ const BookingForm = ({ initialValues }) => {
         <S.Border />
         <span>{splitNumbers(price * days)}₽</span>
       </S.TotalPrice>
-      <Button buttonStyle='long' text='забронировать' hasArrow={true} />
+      {booked ? (
+        <S.Success>Успешно!</S.Success>
+      ) : (
+        <Button buttonStyle='long' text='забронировать' hasArrow={true} onClick={getRoom} />
+      )}
     </S.Form>
   )
 }

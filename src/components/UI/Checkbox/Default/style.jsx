@@ -40,7 +40,6 @@ export const Label = styled.label`
   align-items: flex-start;
   user-select: none;
   margin-bottom: 12px;
-  /* overflow-wrap: break-word; */
   cursor: pointer;
   &::before {
     margin-right: 10px;
