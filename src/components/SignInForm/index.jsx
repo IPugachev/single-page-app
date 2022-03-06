@@ -8,6 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../../store/profile/action'
+import { users } from '../../store/profile/reducer'
 
 const SignInForm = (props) => {
   const validationSchema = yup.object({
@@ -23,8 +24,8 @@ const SignInForm = (props) => {
   } = useForm({ resolver: yupResolver(validationSchema) })
   const onSubmit = (data) => {
     dispatch(loginUser(data))
-    console.log(data)
   }
+  console.log(users[0])
   const onError = (e) => console.log(e)
   return props.isAuth ? (
     <S.SuccessedRegistration>
