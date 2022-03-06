@@ -4,7 +4,6 @@ export const Sidebar = styled.div`
   display: flex;
   flex-direction: column;
   width: 266px;
-  margin-right: 60px;
   & > p {
     font-size: 12px;
     line-height: 14px;

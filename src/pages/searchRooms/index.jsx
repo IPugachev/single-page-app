@@ -11,11 +11,14 @@ const Body = styled.div`
 `
 const Main = styled.div`
   width: 100%;
-  /* max-width: 1440px;
-  min-width: 1200px; */
+  max-width: 1440px;
+  min-width: 1200px;
   padding: 30px 140px 70px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  & > :first-child {
+    margin-right: 60px;
+  }
 `
 
 const SearchRoomsPage = () => {

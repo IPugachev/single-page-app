@@ -12,7 +12,7 @@ const Diagram = ({ reviews }) => {
   return (
     <S.Container>
       <S.Wrapper>
-        <p>{reviews}</p>
+        <p>{reviews + 4}</p>
         <span>голосов</span>
       </S.Wrapper>
       <S.Box values={[bad, alright, good, great]} />

@@ -13,6 +13,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   max-width: 1440px;
   min-width: 1200px;
+  width: 100%;
 `
 
 export const InfoBox = styled.nav`
