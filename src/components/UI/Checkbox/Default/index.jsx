@@ -2,15 +2,19 @@ import React, { useState } from 'react'
 import * as S from './style.jsx'
 import { ReactComponent as ArrowExpand } from '../../../../assets/icons/expand-arrow.svg'
 import { ReactComponent as ArrowClose } from '../../../../assets/icons/close-arrow.svg'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { changeValues } from '../../../../store/filter/action.js'
 
 const DefaultCheckbox = (props) => {
-  const dispatch = useDispatch()
-
   const [handler, setHandler] = useState(false)
   const handlerSwitch = () => {
     props.type === 'list' && setHandler(!handler)
+  }
+  const dispatch = useDispatch()
+  const reducerValues = useSelector((state) => state.filter)
+
+  const handleCheck = (name, event) => {
+    dispatch(changeValues(name, event.target.checked))
   }
 
   return (
@@ -25,8 +29,9 @@ const DefaultCheckbox = (props) => {
             <div key={index}>
               <S.Input
                 type='checkbox'
+                defaultChecked={reducerValues[item.name]}
                 id={item.title}
-                onChange={(event) => dispatch(changeValues(item.name, event.target.checked))}
+                onClick={(event) => handleCheck(item.name, event)}
               />
               <S.Label htmlFor={item.title}>
                 <span>{item.title}</span>

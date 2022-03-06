@@ -19,8 +19,8 @@ const BookingForm = ({ currentRoom }) => {
   const getRoom = (event) => {
     dispatch(bookRoom())
     event.preventDefault()
-    console.log(booked)
   }
+  // console.log(booked)
   return (
     <S.Form>
       <S.HeaderSection>

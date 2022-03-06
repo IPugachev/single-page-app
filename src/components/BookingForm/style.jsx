@@ -71,7 +71,7 @@ export const Border = styled.div`
   flex-grow: 1;
   margin-bottom: 4px;
 `
-export const Success = styled.p`
+export const Success = styled.h4`
   width: 320px;
   font-weight: 700;
   font-size: 24px;

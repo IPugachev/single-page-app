@@ -1,10 +1,15 @@
 import React from 'react'
 import * as S from './style.jsx'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { changeValues } from '../../../../store/filter/action.js'
 
 const RichCheckbox = (props) => {
   const dispatch = useDispatch()
+  const reducerValues = useSelector((state) => state.filter)
+
+  const handleCheck = (name, event) => {
+    dispatch(changeValues(name, event.target.checked))
+  }
 
   return (
     <S.Checkbox margin={props.margin}>
@@ -14,7 +19,8 @@ const RichCheckbox = (props) => {
           <S.Input
             type='checkbox'
             id={item.title}
-            onChange={(event) => dispatch(changeValues(item.name, event.target.checked))}
+            defaultChecked={reducerValues[item.name]}
+            onClick={(event) => handleCheck(item.name, event)}
           />
           <S.Label htmlFor={item.title}>
             <S.Item>

@@ -16,7 +16,11 @@ const validationSchema = yup.object({
   firstName: yup.string().required('Обязательное поле*'),
   lastName: yup.string().required('Обязательное поле*'),
   gender: yup.string().nullable(),
-  birthDate: yup.string().required('Обязательное поле*'),
+  birthDate: yup
+    .string('Неверный формат даты (ДД.ММ.ГГГГ)')
+    .min(10, 'Неверный формат даты (ДД.ММ.ГГГГ)')
+    .max(10, 'Неверный формат даты (ДД.ММ.ГГГГ)')
+    .required('Обязательное поле*'),
   email: yup.string().email('Неверный формат почты').required('Обязательное поле*'),
   password: yup.string().required('Обязательное поле*'),
   adPermisson: yup.boolean(),
@@ -36,6 +40,14 @@ const RegistrationForm = (props) => {
   }
   const onError = (e) => console.log(e)
 
+  const dateInput = (event) => {
+    if (event.target.value.length === 2) {
+      event.target.value += '.'
+    } else if (event.target.value.length === 5) {
+      event.target.value += '.'
+    }
+  }
+
   return (
     <S.Form onSubmit={handleSubmit(onSubmit, onError)}>
       <S.Title>Регистрация аккаунта</S.Title>
@@ -52,6 +64,7 @@ const RegistrationForm = (props) => {
         placeholder='ДД.ММ.ГГГГ'
         margin='20px 0'
         error={errors.birthDate?.message}
+        onChange={(event) => dateInput(event)}
       />
       <Input
         {...register('email')}
