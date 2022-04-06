@@ -20,6 +20,6 @@ export const Registration = styled.div`
 `
 export const BackgroundImg = styled.img`
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
   min-height: 700px;
 `

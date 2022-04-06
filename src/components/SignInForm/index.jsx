@@ -37,8 +37,14 @@ const SignInForm = (props) => {
   ) : (
     <S.Form onSubmit={handleSubmit(onSubmit, onError)}>
       <S.Title>Войти</S.Title>
-      <Input {...register('email')} placeholder='Email' error={errors.email?.message || validationLoginError} />
       <Input
+        type='email'
+        {...register('email')}
+        placeholder='Email'
+        error={errors.email?.message || validationLoginError}
+      />
+      <Input
+        type='password'
         {...register('password')}
         placeholder='Пароль'
         margin='10px 0'
